@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SEMICO — تشخيص الري الذكي</title>
-<link id="brandFavicon" rel="icon" type="image/jpeg">
-<meta name="description" content="SEMICO: a simulated irrigation diagnostic farm at USTHB, Bab Ezzouar, Algiers. All telemetry and valve commands are simulated locally.">
+<title>SEMICO — مراقبة التربة والأرض</title>
+<link id="brandFavicon" rel="icon" type="image/gif" href="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta name="description" content="SEMICO: self-contained soil and land monitoring at USTHB, with simulated soil sensors, custom land boundaries, and gateway diagnostics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <!-- Leaflet 1.9.4 (c) Vladimir Agafonkin, inlined -->
 <style>
 /* required styles */
@@ -715,7 +715,7 @@ input,select{font-family:inherit; font-size:inherit; color:inherit}
 ::-webkit-scrollbar-track{background:transparent}
 .leaflet-container{background:var(--surface3); font-family:var(--sans)}
 .leaflet-tile-pane{filter:var(--leaflet-tile-filter)}
-.leaflet-control-attribution{background:rgba(var(--surface),.8)!important; font-size:10px}
+.leaflet-control-attribution{background:var(--surface)!important; font-size:10px}
 
 /* ================= Topbar ================= */
 .topbar{
@@ -818,13 +818,6 @@ select.sel{
   font-size:10.5px; padding:1px 8px; border-radius:var(--pill);
   border:1px solid var(--border); color:var(--muted); white-space:nowrap;
 }
-.tag.open{color:var(--primary); border-color:var(--primary); background:var(--primary-dim)}
-.tag.closed{color:var(--muted)}
-.tag.pending{color:var(--warn); border-color:var(--warn); background:var(--warn-dim)}
-.tag.received{color:var(--secondary); border-color:var(--secondary); background:var(--secondary-dim)}
-.tag.executed{color:var(--primary); border-color:var(--primary); background:var(--primary-dim)}
-.tag.failed{color:var(--critical); border-color:var(--critical); background:var(--critical-dim)}
-.tag.timeout{color:var(--critical); border-color:var(--critical); background:var(--critical-dim)}
 
 /* ================= Alerts ================= */
 .arow{
@@ -884,13 +877,6 @@ html[dir="rtl"] .drawer{transform:translateX(-110%)}
 .dstat .l{font-size:10.5px; color:var(--muted); margin-bottom:3px}
 .dstat .v{font-family:var(--mono); font-size:14.5px; direction:ltr}
 .sect{font-size:12px; color:var(--muted); font-weight:500; margin-bottom:-6px}
-.irr{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
-.stepbtn{
-  width:32px; height:32px; border-radius:50%; border:1px solid var(--border);
-  background:var(--surface); font-size:16px; color:var(--muted);
-}
-.stepbtn:hover{border-color:var(--primary); color:var(--primary)}
-.durval{font-family:var(--mono); font-size:15px; min-width:64px; text-align:center; direction:ltr}
 .btn-primary{
   height:36px; padding:0 18px; border-radius:var(--pill); border:1px solid var(--primary);
   background:var(--primary); color:#fff; font-size:13.5px; font-weight:500;
@@ -990,7 +976,7 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible, select:focu
   outline:3px solid var(--secondary); outline-offset:3px;
 }
 .topbar { z-index:1100; border-top:3px solid var(--primary); gap:12px; }
-.brand .bname { font-size:23px; font-weight:700; letter-spacing:1.2px; }
+.brand .bname { margin:0; font-size:23px; font-weight:700; letter-spacing:1.2px; }
 .brand .btag { max-width:230px; font-size:10px; }
 .farm-heading { flex:1; min-width:190px; }
 .farm-heading strong { display:block; font-size:13px; overflow-wrap:anywhere; }
@@ -998,9 +984,9 @@ button:focus-visible, [tabindex]:focus-visible, input:focus-visible, select:focu
 .header-kpis { display:grid; grid-template-columns:repeat(4,minmax(90px,1fr)); gap:8px; width:100%; }
 .header-kpi { border:1px solid var(--border); background:var(--surface2); border-radius:10px;
   padding:7px 12px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
-.header-kpi span { color:var(--muted); font-size:12px; }
-.header-kpi b { color:var(--primary); font-size:20px; font-variant-numeric:tabular-nums; }
-#headerIrrigating,#headerMoisture,#headerAlarms { direction:ltr; unicode-bidi:isolate; }
+.header-kpi span { min-width:0; overflow-wrap:anywhere; color:var(--muted); font-size:12px; }
+.header-kpi b { white-space:nowrap; flex-shrink:0; color:var(--primary); font-size:20px; font-variant-numeric:tabular-nums; }
+#headerSensors,#headerMoisture,#headerAlarms { direction:ltr; unicode-bidi:isolate; }
 .modal { overscroll-behavior:contain; }
 .layout { direction:ltr; grid-template-columns:minmax(0,1.65fr) minmax(350px,1fr); }
 .layout > * { min-width:0; }
@@ -1013,15 +999,10 @@ html[dir="rtl"] .layout > * { direction:rtl; }
 #tileStatus { border-radius:7px; color:var(--text); background:var(--warn-dim); padding:6px 9px; font-size:11px; margin-top:8px; }
 .map-node { display:grid; place-items:center; width:20px; height:20px; border-radius:50%;
   background:var(--surface); color:var(--primary); border:2px solid currentColor; box-shadow:var(--shadow); }
-.map-node.valve { border-radius:4px; color:var(--muted); }
-.map-node.valve.flowing { color:var(--secondary); background:var(--secondary-dim); }
-.map-node.station { width:26px; height:26px; color:var(--primary); font-size:18px; }
 .map-node.gateway { color:var(--secondary); }
 .map-node svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:2; }
 .sem-zlabel { color:#fff; background:rgba(11,35,26,.78); border:0; border-radius:6px; text-align:center; font:11px var(--sans); }
 .sem-zlabel b,.sem-zlabel span { display:block; }
-path.water-flow { stroke-dasharray:6 5; animation:water-travel 1.5s linear infinite; }
-@keyframes water-travel { to { stroke-dashoffset:-22; } }
 #zoneList { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; max-height:none; }
 #zoneList .zrow { flex-wrap:wrap; margin:0; padding:10px; background:var(--surface2); border:1px solid var(--border); border-radius:9px; text-align:start; }
 #zoneList .zrow.sel { border-color:var(--primary); background:var(--primary-dim); }
@@ -1038,17 +1019,7 @@ path.water-flow { stroke-dasharray:6 5; animation:water-travel 1.5s linear infin
 .chartbox svg { display:block; width:100%; height:150px; }
 .ctip { max-width:94%; white-space:normal; pointer-events:none; background:var(--surface); color:var(--text); border:1px solid var(--border); }
 .feeds { margin:0 20px 16px; }
-.feed-tabs { display:flex; gap:8px; margin-bottom:10px; }
-.feed-tabs button[aria-selected="true"] { background:var(--primary); color:white; border-color:var(--primary); }
 .feeds .panel-list { max-height:380px!important; }
-.command-entry { border:1px solid var(--border); border-radius:10px; padding:12px; margin-bottom:10px; }
-.command-head { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; }
-.command-entry code { display:block; margin:6px 0; padding:6px 8px; background:var(--surface2); border-radius:5px;
-  font:11px var(--mono); white-space:pre-wrap; overflow-wrap:anywhere; direction:ltr; text-align:left; }
-.transitions { display:flex; gap:8px; flex-wrap:wrap; font-size:11px; }
-.transitions > span { border-inline-start:3px solid var(--secondary); padding-inline-start:8px; }
-.command-entry [data-state="FAILED"] { border-color:var(--critical); }
-.command-entry [data-state="EXECUTED"] { border-color:var(--primary); }
 .frow { grid-template-columns:minmax(160px,1fr) minmax(180px,1fr); align-items:start; }
 .field-control { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px; align-items:center; }
 .field-unit { color:var(--muted); font-size:11px; max-width:105px; }
@@ -1060,10 +1031,10 @@ path.water-flow { stroke-dasharray:6 5; animation:water-travel 1.5s linear infin
 @media(max-width:1100px) { .layout { grid-template-columns:minmax(0,1.2fr) minmax(320px,1fr); } #zoneList { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:800px) { .layout { grid-template-columns:1fr; padding:12px; } #map { height:420px; } .feeds { margin:0 12px 12px; } .topbar { position:relative; padding:10px 12px; } .brand .btag { display:none; } }
 @media(max-width:800px) { .brand .brand-logo { width:68px; height:68px; padding:5px; border-radius:10px; } }
-@media(max-width:480px) { .header-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .farm-heading { min-width:160px; } .frow { grid-template-columns:1fr; } .mfoot { gap:6px; padding:10px; } .mfoot button { padding-inline:10px; } }
+@media(max-width:480px) { .header-kpi { flex-direction:column; align-items:flex-start; gap:4px; } .header-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .farm-heading { min-width:160px; } .frow { grid-template-columns:1fr; } .mfoot { gap:6px; padding:10px; } .mfoot button { padding-inline:10px; } }
 @media(max-width:480px) {
   .sem-zlabel { width:32px!important; height:26px!important; margin-left:-16px!important; margin-top:-13px!important; font-size:9px; line-height:1.3; }
-  .map-node.soil,.map-node.valve { width:14px; height:14px; transform:translate(3px,3px); font-size:9px; }
+  .map-node.soil { width:14px; height:14px; transform:translate(3px,3px); font-size:9px; }
   .map-node.soil svg { width:9px; height:9px; }
 }
 button:disabled { cursor:not-allowed; opacity:.5; }
@@ -1096,13 +1067,13 @@ body.boundary-editing #mapLegend { display:none; }
 
 <!-- ================= Topbar ================= -->
 <header class="topbar">
-  <a class="brand" href="#" onclick="return false">
-    <img class="brand-logo" data-brand-logo width="84" height="84" decoding="sync" data-i18n-alt="brand.logoAlt" alt="شعار جامعة العلوم والتكنولوجيا هواري بومدين">
-    <span>
-      <span class="bname">SEMICO</span>
+  <div class="brand">
+    <img class="brand-logo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-brand-logo width="84" height="84" decoding="sync" data-i18n-alt="brand.logoAlt" alt="شعار جامعة العلوم والتكنولوجيا هواري بومدين">
+    <div class="brand-text">
+      <h1 class="bname">SEMICO</h1>
       <div class="btag" id="brandTag">When Technology Meets Nature — Made in Algeria</div>
-    </span>
-  </a>
+    </div>
+  </div>
 
   <div class="clockbox">
     <span class="simclock mono" id="simClock">--:--</span>
@@ -1113,32 +1084,29 @@ body.boundary-editing #mapLegend { display:none; }
 
   <span class="spacer"></span>
 
-  <span class="chip" id="modeChip" style="cursor:pointer" title="">
-    <span class="dot"></span><span id="modeTxt">—</span>
-  </span>
-  <button class="tbtn" id="btnPause" title="Pause / Resume">
+  <button type="button" class="tbtn" id="btnPause" title="Pause / Resume">
     <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
   </button>
   <select class="sel" id="selSpeed" title="Playback speed">
     <option value="1">1×</option><option value="10">10×</option>
     <option value="60" selected>60×</option><option value="300">300×</option>
   </select>
-  <button class="tbtn lang" id="btnLang" title="العربية / English">EN</button>
-  <button class="tbtn" id="btnTheme" title="Light / Dark">
+  <button type="button" class="tbtn lang" id="btnLang" title="العربية / English">EN</button>
+  <button type="button" class="tbtn" id="btnTheme" title="Light / Dark">
     <svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
   </button>
-  <button class="tbtn" id="btnAlerts" title="Alerts">
+  <button type="button" class="tbtn" id="btnAlerts" title="Alerts">
     <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
     <span class="badge zero" id="alertCount">0</span>
   </button>
-  <button class="tbtn" id="btnSettings" title="Settings — Ctrl+Shift+K">
+  <button type="button" class="tbtn" id="btnSettings" title="Settings — Ctrl+Shift+K">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
   </button>
   <div class="header-kpis">
-    <div class="header-kpi"><span data-i18n="kpi.irrigating"></span><b id="headerIrrigating">—</b></div>
+    <div class="header-kpi"><span data-i18n="kpi.reporting"></span><b id="headerSensors">—</b></div>
     <div class="header-kpi"><span data-i18n="kpi.alerts"></span><b id="headerAlarms">0</b></div>
     <div class="header-kpi"><span data-i18n="kpi.moisture"></span><b id="headerMoisture">—</b></div>
-    <div class="header-kpi"><span data-i18n="kpi.pump"></span><b id="headerPump">—</b></div>
+    <div class="header-kpi"><span data-i18n="kpi.gateway"></span><b id="headerGateway">—</b></div>
   </div>
 </header>
 
@@ -1198,14 +1166,14 @@ body.boundary-editing #mapLegend { display:none; }
       </div>
       <div class="card">
         <div class="ctitle">
-          <svg viewBox="0 0 24 24"><path d="M12 2s6 7.5 6 12a6 6 0 0 1-12 0c0-4.5 6-12 6-12Z"/></svg>
-          <span id="chartFlowTitle">Station flow — 24h</span>
-          <span class="sub" id="chartFlowSub">—</span>
+          <svg viewBox="0 0 24 24"><path d="M9 14.8V5a3 3 0 0 1 6 0v9.8a5 5 0 1 1-6 0Z"/><path d="M12 7v11"/></svg>
+          <span id="chartTempTitle">حرارة التربة — آخر ٢٤ ساعة</span>
+          <span class="sub" id="chartTempSub">—</span>
         </div>
-        <div class="chartbox" id="chartFlow" dir="ltr">
-          <svg id="flowSvg"></svg><div class="ctip" id="flowTip"></div>
+        <div class="chartbox" id="chartTemp" dir="ltr">
+          <svg id="tempSvg"></svg><div class="ctip" id="tempTip"></div>
         </div>
-        <div class="legend" id="flowLegend"></div>
+        <div class="legend" id="tempLegend"></div>
       </div>
     </div>
   </div>
@@ -1221,37 +1189,25 @@ body.boundary-editing #mapLegend { display:none; }
       <div class="panel-list" id="zoneList"></div>
     </div>
 
-    <div class="card">
-      <div class="ctitle">
-        <svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-        <span id="cmdTitle">Valve commands</span>
-        <span class="sub" id="cmdSub">semico/v1</span>
-      </div>
-      <div class="panel-list" id="cmdList" style="max-height:220px"></div>
-    </div>
+
 
     <div class="card">
       <div class="ctitle">
         <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
         <span id="alertsTitle">Alerts</span>
-        <span class="sub"><button class="minibtn" id="btnRepairAll" style="height:22px">Repair all</button></span>
+        <span class="sub"><button type="button" class="minibtn" id="btnRepairAll" style="height:22px">Repair all</button></span>
       </div>
       <div class="panel-list" id="alertList" style="max-height:340px"></div>
     </div>
   </aside>
 </main>
 
-<section class="feeds" id="feeds">
-  <div class="feed-tabs" role="tablist">
-    <button type="button" class="btn-outline" id="tabAlarms" role="tab" aria-selected="true" aria-controls="alarmPanel" data-i18n="tab.alarms"></button>
-    <button type="button" class="btn-outline" id="tabCommands" role="tab" aria-selected="false" aria-controls="commandPanel" data-i18n="tab.commands"></button>
-  </div>
-  <div id="alarmPanel" role="tabpanel" aria-labelledby="tabAlarms" tabindex="0"></div>
-  <div id="commandPanel" role="tabpanel" aria-labelledby="tabCommands" tabindex="0" hidden></div>
+<section class="feeds" id="feeds" aria-labelledby="alertsTitle">
+  <div id="alarmPanel"></div>
 </section>
 
 <footer class="appfoot">
-  <img class="brand-logo" data-brand-logo width="44" height="44" alt="" aria-hidden="true" decoding="async">
+  <img class="brand-logo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-brand-logo width="44" height="44" alt="" aria-hidden="true" decoding="async">
   <span id="footSlogan">When Technology Meets Nature — Made in Algeria.</span>
   <span>·</span>
   <span class="mono">SEMICO-mockup v0.1</span>
@@ -1264,7 +1220,7 @@ body.boundary-editing #mapLegend { display:none; }
   <div class="dhead">
     <span class="t" id="drawerTitle">—</span>
     <span class="spacer" style="flex:1"></span>
-    <button class="tbtn" id="drawerClose" title="Close">
+    <button type="button" class="tbtn" id="drawerClose" title="Close">
       <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
@@ -1285,10 +1241,10 @@ body.boundary-editing #mapLegend { display:none; }
       <div class="hint" id="settingsHint">—</div>
     </div>
     <div class="mfoot">
-      <button class="btn-outline blue" id="btnImport">Import JSON</button>
-      <button class="btn-outline blue" id="btnExport">Export JSON</button>
-      <button class="btn-outline" id="btnReset">Reset defaults</button>
-      <button class="btn-primary" id="btnSave">Save &amp; apply</button>
+      <button type="button" class="btn-outline blue" id="btnImport">Import JSON</button>
+      <button type="button" class="btn-outline blue" id="btnExport">Export JSON</button>
+      <button type="button" class="btn-outline" id="btnReset">Reset defaults</button>
+      <button type="button" class="btn-primary" id="btnSave">Save &amp; apply</button>
       <input type="file" id="fileImport" accept=".json,application/json" style="display:none">
     </div>
   </div>
@@ -1306,7 +1262,7 @@ body.boundary-editing #mapLegend { display:none; }
 <script>
 'use strict';
 /* =====================================================================
-   SEMICO-mockup — single-file digital twin of the Semico smart-irrigation
+   SEMICO-mockup — single-file soil and land monitoring
    platform (browser-only prototype).
    Modules mirror the IRRI-DIAG architecture:
    SemConfig -> SemI18n -> SemFarm -> SemSim -> SemRules -> SemChart
@@ -1317,58 +1273,69 @@ body.boundary-editing #mapLegend { display:none; }
 const SemConfig = (() => {
   const KEY = 'semico.config.v1';
   const DEFAULTS = {
-    farm: {
-      id: 'usthb01',
-      nameAr: 'مزرعة سيميكو التجريبية — جامعة هواري بومدين، باب الزوار',
-      nameEn: 'SEMICO Pilot Farm — USTHB, Bab Ezzouar',
-      lat: 36.7160, lng: 3.1828, zoom: 19,
-      width: 300, height: 200, rotation: 18,
-      rows: 2, cols: 4, drawnLines: 6, boundary: []
+    "farm": {
+      "id": "usthb01",
+      "nameAr": "مزرعة سيميكو التجريبية — جامعة هواري بومدين، باب الزوار",
+      "nameEn": "SEMICO Pilot Farm — USTHB, Bab Ezzouar",
+      "lat": 36.716,
+      "lng": 3.1828,
+      "zoom": 19,
+      "width": 300,
+      "height": 200,
+      "rotation": 18,
+      "rows": 2,
+      "cols": 4,
+      "boundary": []
     },
-    hyd: {
-      emitterLph: 2, emittersPerZone: 3600,
-      pumpShutoffBar: 3.2, pumpDesignBar: 2.4,
-      regulatorBar: 1
+    "soil": {
+      "rootDepthMm": 120,
+      "fieldCapacityPct": 60,
+      "drainRate": 0.0005
     },
-    soil: { rootDepthMm: 120, wetAreaPct: 16, fieldCapacityPct: 60, drainRate: 0.0005 },
-    rules: {
-      moistureLowPct: 18, moistureHighPct: 70,
-      highPct: 20, lowPct: 25,
-      persist: 3, offlineMin: 3, gatewayOfflineSec: 120,
-      learnN: 20, stuckFlowLpm: 2, hysteresisPct: 3
+    "rules": {
+      "moistureLowPct": 18,
+      "moistureHighPct": 70,
+      "persist": 3,
+      "offlineMin": 3,
+      "gatewayOfflineSec": 120,
+      "learnN": 20,
+      "hysteresisPct": 3
     },
-    sim: {
-      speed: 300, noisePct: 0.15, startTime: '06:00', endTime: '10:00',
-      zonesPerTurn: 2, turnMin: 60, etMmDay: 6, seed: 7
+    "sim": {
+      "speed": 300,
+      "noisePct": 0.15,
+      "startTime": "06:00",
+      "etMmDay": 6,
+      "seed": 7
     },
-    commands: {
-      receiveMinSec: 2, receiveMaxSec: 4, executeDelaySec: 0.25,
-      timeoutSec: 10, defaultMin: 60
-    },
-    ui: { lang: 'ar', theme: 'light' }
+    "ui": {
+      "lang": "ar",
+      "theme": "light"
+    }
   };
   const LIMITS = {
-    'farm.lat': [-85, 85, 0.0001, 'degree'], 'farm.lng': [-180, 180, 0.0001, 'degree'],
-    'farm.zoom': [15, 20, 1, 'level'], 'farm.width': [50, 2000, 1, 'metre'],
-    'farm.height': [50, 2000, 1, 'metre'], 'farm.rotation': [0, 359, 1, 'degree'],
-    'farm.rows': [1, 4, 1, 'count'], 'farm.cols': [1, 8, 1, 'count'],
-    'farm.drawnLines': [1, 12, 1, 'count'], 'hyd.emitterLph': [0.5, 10, 0.1, 'lph'],
-    'hyd.emittersPerZone': [100, 20000, 1, 'count'],
-    'hyd.pumpShutoffBar': [1, 10, 0.1, 'bar'], 'hyd.pumpDesignBar': [0.5, 9, 0.1, 'bar'],
-    'hyd.regulatorBar': [0.2, 5, 0.1, 'bar'], 'soil.rootDepthMm': [50, 1000, 1, 'mm'],
-    'soil.wetAreaPct': [5, 100, 1, 'percent'], 'soil.fieldCapacityPct': [30, 65, 1, 'percent'],
-    'soil.drainRate': [0, 0.005, 0.0001, 'perMinute'],
-    'rules.moistureLowPct': [5, 30, 1, 'percent'], 'rules.moistureHighPct': [60, 95, 1, 'percent'],
-    'rules.highPct': [5, 40, 1, 'percent'], 'rules.lowPct': [5, 50, 1, 'percent'],
-    'rules.persist': [2, 15, 1, 'samples'], 'rules.offlineMin': [3, 30, 1, 'minute'],
-    'rules.gatewayOfflineSec': [60, 600, 1, 'second'], 'rules.learnN': [5, 50, 1, 'samples'],
-    'rules.stuckFlowLpm': [0.1, 10, 0.1, 'lpm'], 'rules.hysteresisPct': [1, 8, 1, 'percent'],
-    'sim.speed': [1, 3000, 1, 'speed'], 'sim.noisePct': [0, 0.5, 0.01, 'percent'],
-    'sim.zonesPerTurn': [1, 8, 1, 'count'], 'sim.turnMin': [30, 180, 1, 'minute'],
-    'sim.etMmDay': [0, 12, 0.1, 'mmDay'], 'sim.seed': [1, 999999, 1, 'seed'],
-    'commands.receiveMinSec': [2, 4, 0.1, 'second'], 'commands.receiveMaxSec': [2, 4, 0.1, 'second'],
-    'commands.executeDelaySec': [0.1, 1, 0.05, 'second'], 'commands.timeoutSec': [5, 60, 1, 'second'],
-    'commands.defaultMin': [5, 240, 1, 'minute']
+    "farm.lat": [-85, 85, 0.0001, "degree"],
+    "farm.lng": [-180, 180, 0.0001, "degree"],
+    "farm.zoom": [15, 20, 1, "level"],
+    "farm.width": [50, 2000, 1, "metre"],
+    "farm.height": [50, 2000, 1, "metre"],
+    "farm.rotation": [0, 359, 1, "degree"],
+    "farm.rows": [1, 4, 1, "count"],
+    "farm.cols": [1, 8, 1, "count"],
+    "soil.rootDepthMm": [50, 1000, 1, "mm"],
+    "soil.fieldCapacityPct": [30, 65, 1, "percent"],
+    "soil.drainRate": [0, 0.005, 0.0001, "perMinute"],
+    "rules.moistureLowPct": [5, 30, 1, "percent"],
+    "rules.moistureHighPct": [60, 95, 1, "percent"],
+    "rules.persist": [2, 15, 1, "samples"],
+    "rules.offlineMin": [3, 30, 1, "minute"],
+    "rules.gatewayOfflineSec": [60, 600, 1, "second"],
+    "rules.learnN": [5, 50, 1, "samples"],
+    "rules.hysteresisPct": [1, 8, 1, "percent"],
+    "sim.speed": [1, 3000, 1, "speed"],
+    "sim.noisePct": [0, 0.5, 0.01, "percent"],
+    "sim.etMmDay": [0, 12, 0.1, "mmDay"],
+    "sim.seed": [1, 999999, 1, "seed"],
   };
   const clone = value => JSON.parse(JSON.stringify(value));
   const SCHEMA = Object.entries(DEFAULTS).flatMap(([section, values]) =>
@@ -1379,8 +1346,9 @@ const SemConfig = (() => {
         min: limit?.[0], max: limit?.[1], step: limit?.[2], unit: limit?.[3] || 'text' };
     }));
   function merge(base, override) {
-    const result = clone(base);
+    const result = clone(DEFAULTS);
     for (const field of SCHEMA) {
+      if (Object.prototype.hasOwnProperty.call(base?.[field.section] || {}, field.key)) result[field.section][field.key] = base[field.section][field.key];
       if (Object.prototype.hasOwnProperty.call(override?.[field.section] || {}, field.key)) {
         result[field.section][field.key] = override[field.section][field.key];
       }
@@ -1412,38 +1380,23 @@ const SemConfig = (() => {
     }
     if (errors.length) return errors;
     if (!/^[a-z0-9][a-z0-9-]{0,31}$/.test(cfg.farm.id)) errors.push({ path: 'farm.id', code: 'id' });
-    const start = timeMinutes(cfg.sim.startTime), end = timeMinutes(cfg.sim.endTime);
-    let count;
-    try { count = SemFarm.build(cfg).nZones; } catch { errors.push({ path: 'farm.boundary', code: 'boundaryGeometry' }); return errors; }
-    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start ||
-        cfg.sim.turnMin < cfg.rules.learnN + 1 ||
-        Math.ceil(count / cfg.sim.zonesPerTurn) * cfg.sim.turnMin > end - start) {
-      errors.push({ path: 'sim.startTime', code: 'schedule' });
-    }
-    if (cfg.hyd.pumpDesignBar >= cfg.hyd.pumpShutoffBar || cfg.hyd.regulatorBar >= cfg.hyd.pumpDesignBar) {
-      errors.push({ path: 'hyd.pumpDesignBar', code: 'pressure' });
-    }
-    if (cfg.commands.receiveMinSec > cfg.commands.receiveMaxSec ||
-        cfg.commands.timeoutSec <= cfg.commands.receiveMaxSec + cfg.commands.executeDelaySec) {
-      errors.push({ path: 'commands.timeoutSec', code: 'timing' });
-    }
+    if (!Number.isFinite(timeMinutes(cfg.sim.startTime))) errors.push({ path: 'sim.startTime', code: 'time' });
+    try { SemFarm.build(cfg); } catch { errors.push({ path: 'farm.boundary', code: 'boundaryGeometry' }); }
     if (cfg.rules.gatewayOfflineSec > cfg.rules.offlineMin * 60) errors.push({ path: 'rules.offlineMin', code: 'silence' });
     if (!['ar', 'en'].includes(cfg.ui.lang)) errors.push({ path: 'ui.lang', code: 'choice' });
     if (!['light', 'dark'].includes(cfg.ui.theme)) errors.push({ path: 'ui.theme', code: 'choice' });
     return errors;
   }
   function load() {
-    try {
-      let saved = JSON.parse(localStorage.getItem(KEY) || 'null');
-      if (saved?.version === 1 && saved.commands?.timeoutMin !== undefined) saved = { ui: saved.ui };
-      const config = merge(DEFAULTS, saved);
-      return validate(config).length ? clone(DEFAULTS) : config;
-    } catch { return clone(DEFAULTS); }
+    let saved;
+    try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { saved = null; }
+    const config = merge(DEFAULTS, saved), valid = validate(config).length ? clone(DEFAULTS) : config;
+    if (saved) { try { localStorage.setItem(KEY, JSON.stringify(valid)); } catch {} }
+    return valid;
   }
   function save(cfg) {
     if (validate(cfg).length) return false;
-    try { localStorage.setItem(KEY, JSON.stringify(cfg)); return true; }
-    catch { return false; }
+    try { localStorage.setItem(KEY, JSON.stringify(merge(DEFAULTS, cfg))); return true; } catch { return false; }
   }
   function reset() { try { localStorage.removeItem(KEY); } catch {} return clone(DEFAULTS); }
   return { KEY, DEFAULTS, clone, merge, load, save, reset, validate, SCHEMA, timeMinutes };
@@ -1451,211 +1404,104 @@ const SemConfig = (() => {
 
 /* ============================= SemI18n ============================= */
 const SemI18n = (() => {
-  const DICT = {
-    ar: {
-      'brand.tag': 'عندما تلتقي التكنولوجيا بالطبيعة — صنع في الجزائر',
-      'app.loading': 'جارٍ تهيئة المزرعة الافتراضية…',
-      'app.loadingSim': 'جارٍ توليد السجل الافتراضي (24 ساعة) وتعلّم الخطوط المرجعية…',
-      'clock.sim': 'الساعة المتحاكاة',
-      'mode.auto': 'وضع تلقائي', 'mode.manual': 'وضع يدوي',
-      'mode.auto.tip': 'الري وفق الجدولة — انقر للتبديل إلى الوضع اليدوي',
-      'mode.manual.tip': 'التحكم اليدوي بالصمامات — انقر للعودة إلى الوضع التلقائي',
-      'banner.critical': 'تنبيهات نشطة تتطلب انتباهك — انقر لعرضها',
-      'banner.crit': 'حرج', 'banner.warn': 'تحذير',
-      'map.title': 'خريطة المزرعة', 'map.sub': 'انقر على منطقة أو على المحطة لعرض التفاصيل',
-      'legend.moist5': 'رطوبة ≥ 45%', 'legend.moist4': '35–45%', 'legend.moist3': '25–35%',
-      'legend.moist2': '18–25%', 'legend.moist1': 'أقل من 18% (حرجة)',
-      'legend.off': 'غير متصل',
-      'kpi.moisture': 'متوسط رطوبة الجذور', 'kpi.used': 'المياه المستخدمة اليوم',
-      'kpi.saved': 'التوفير مقابل التقليدي*', 'kpi.lost': 'المياه المفقودة (تقديري)',
-      'kpi.alerts': 'التنبيهات النشطة', 'kpi.online': 'الحساسات المتصلة',
-      'zones.title': 'مناطق الري', 'zones.sub': 'الحالة · الرطوبة · الصمام',
-      'cmd.title': 'أوامر الصمامات', 'cmd.sub': 'دورة حياة MQTT',
-      'alerts.title': 'التنبيهات والتشخيص',
-      'chart.moist': 'رطوبة التربة — آخر 24 ساعة', 'chart.moist.sub': 'عتبة الإنذار',
-      'chart.flow': 'تدفق المحطة — آخر 24 ساعة', 'chart.flow.sub': 'لتر/دقيقة',
-      'chart.zone': 'المنطقة', 'chart.threshold': 'العتبة',
-      'valve.open': 'مفتوح', 'valve.closed': 'مغلق', 'valve.unknown': 'غير معروف',
-      'status.ok': 'سليم', 'status.learning': 'تعلّم', 'status.warning': 'تحذير',
-      'status.critical': 'حرج', 'status.offline': 'غير متصل', 'status.unknown': '—',
-      'cmd.pending': 'قيد الإرسال', 'cmd.received': 'تم الاستلام', 'cmd.executed': 'تم التنفيذ',
-      'cmd.failed': 'فشل', 'cmd.timeout': 'انتهت المهلة',
-      'cmd.irrigate': 'اسقِ الآن', 'cmd.minutes': 'دقيقة', 'cmd.closeNow': 'أغلق الصمام فوراً',
-      'cmd.openNow': 'افتح الصمام فوراً',
-      'cmd.sent.toast': 'أُرسل الأمر عبر MQTT', 'cmd.received.toast': 'استلم المتحكم الأمر',
-      'cmd.executed.toast': 'نُفّذ الأمر — الصمام', 'cmd.failed.toast': 'فشل الأمر — الصمام',
-      'cmd.timeout.toast': 'انتهت مهلة الأمر (30 ث) — البوابة غير متصلة؟',
-      'cmd.duration': 'مدة الري',
-      'alert.ack': 'إقرار', 'alert.repair': 'إصلاح', 'alert.repairAll': 'إصلاح الكل',
-      'alert.none': 'لا توجد تنبيهات — النظام يعمل بشكل سليم',
-      'alert.resolved': 'مُحلول',
-      'alert.MOISTURE_LOW': 'رطوبة التربة منخفضة',
-      'alert.MOISTURE_HIGH': 'رطوبة التربة مرتفعة (فرط ري)',
-      'alert.SENSOR_OFFLINE': 'حساس رطوبة غير متصل',
-      'alert.GATEWAY_OFFLINE': 'البوابة (Gateway) غير متصلة',
-      'alert.LEAK': 'تسريب محتمل في الشبكة',
-      'alert.CLOG': 'انسداد محتمل في النقاطات',
-      'alert.STUCK_OPEN': 'صمام عالق في وضع الفتح',
-      'alert.STUCK_CLOSED': 'صمام عالق في وضع الإغلاق',
-      'alert.COMMAND_FAILED': 'فشل أمر ري',
-      'alert.zone': 'المنطقة', 'alert.station': 'المحطة',
-      'msg.MOISTURE_LOW': 'الرطوبة {v}% أدنى من العتبة {th}% — يُنصح بالري.',
-      'msg.MOISTURE_HIGH': 'الرطوبة {v}% أعلى من الحد {th}% — قد يكون هناك فرط ري.',
-      'msg.SENSOR_OFFLINE': 'لا رسائل من العقدة {node} منذ أكثر من {th} دقيقة.',
-      'msg.GATEWAY_OFFLINE': 'صمت وحدة التحكم ESP32 لأكثر من {th} ثانية.',
-      'msg.LEAK': 'التدفق {v} ل/د أعلى بنسبة {p}% من الخط المرجعي {b} ل/د — تسريب محتمل.',
-      'msg.CLOG': 'التدفق {v} ل/د أدنى بنسبة {p}% من الخط المرجعي {b} ل/د — انسداد محتمل.',
-      'msg.STUCK_OPEN': 'الصمام مُغلق بالأمر لكن التدفق مستمر ({v} ل/د).',
-      'msg.STUCK_CLOSED': 'الصمام مفتوح بالأمر لكن التدفق شبه معدوم ({v} ل/د).',
-      'msg.COMMAND_FAILED': 'تلقى المتحكم إشعار فشل لتنفيذ أمر الري.',
-      'drawer.zone': 'المنطقة', 'drawer.station': 'محطة الضخ والتحكم',
-      'drawer.moisture': 'رطوبة الجذور', 'drawer.soilTemp': 'حرارة التربة',
-      'drawer.flow': 'التدفق', 'drawer.pressure': 'ضغط المضخة',
-      'drawer.valveState': 'حالة الصمام', 'drawer.cmdState': 'حالة الأمر',
-      'drawer.baseline': 'الخط المرجعي', 'drawer.battery': 'بطارية الحساس',
-      'drawer.signal': 'قوة الإشارة', 'drawer.uptime': 'زمن التشغيل',
-      'drawer.firmware': 'البرنامج الثابت', 'drawer.lastMsg': 'آخر رسالة',
-      'drawer.inject': 'حقن عطل (محاكاة)',
-      'drawer.injectSub': 'الأعطال تغيّر فيزياء المحاكي فقط — محرك التشخيص يستنتج بنفسه',
-      'inject.leak': 'تسريب/انفجار', 'inject.clog': 'انسداد نقاطات',
-      'inject.stuckOpen': 'صمام عالق مفتوحاً', 'inject.stuckClosed': 'صمام عالق مغلقاً',
-      'inject.sensorOffline': 'قطع حساس الرطوبة', 'inject.dry': 'موجة جفاف',
-      'inject.gatewayOffline': 'قطع البوابة ESP32',
-      'inject.apply': 'حقن', 'inject.clear': 'إزالة الأعطال',
-      'inject.active': 'أعطال نشطة:', 'inject.none': 'لا أعطال محقونة',
-      'repair.done': 'تم الإصلاح وإعادة ضبط الأعطال المحاكاة',
-      'repair.zone': 'تم إصلاح المنطقة',
-      'learn.toast': 'أُعيد تعلّم القيم المرجعية الطبيعية',
-      'learn.warn': 'أصلح الأعطال قبل إعادة التعلم كي لا تُحفظ حالة معطوبة كمرجع.',
-      'settings.title': 'الإعدادات',
-      'settings.farm': 'المزرعة والجغرافيا', 'settings.hyd': 'المعاملات الهيدروليكية',
-      'settings.rules': 'عتبات التشخيص', 'settings.sim': 'المحاكاة والجدولة',
-      'settings.commands': 'أوامر الصمام',
-      'settings.save': 'حفظ وتطبيق', 'settings.export': 'تصدير JSON',
-      'settings.import': 'استيراد JSON', 'settings.reset': 'استعادة الافتراضي',
-      'settings.savedToast': 'حُفظت الإعدادات وأُعيد تشغيل المحاكاة',
-      'settings.resetToast': 'حُذفت الإعدادات المحفوظة — تُطبَّق الافتراضيات',
-      'settings.hint': 'الإعدادات تُحفظ في المتصفح تحت المفتاح semico.config.v1. التطبيق يعيد توليد سجل 24 ساعة والخطوط المرجعية.',
-      'settings.invalid': 'قيم غير صالحة: ',
-      'import.badJson': 'ملف JSON غير صالح', 'import.ok': 'تم الاستيراد — اضغط "حفظ وتطبيق"',
-      'err.number': 'قيمة رقمية مطلوبة',
-      'toast.newAlert': 'تنبيه جديد', 'toast.alertResolved': 'زال التنبيه',
-      'theme.light': 'الوضع الفاتح', 'theme.dark': 'الوضع الداكن',
-      'lang.switch': 'English', 'pause': 'إيقاف مؤقت', 'resume': 'متابعة',
-      'foot.sim': 'نموذج محاكاة — غير متصل بعتاد حقيقي.',
-      'foot.slogan': 'عندما تلتقي التكنولوجيا بالطبيعة — صنع في الجزائر.',
-      'est.note': '* تقدير مقارنة بالري السطحي وفق هدف توفير 50% (نموذج، ليس قياساً ميدانياً).',
-      'date.months': 'يناير,فبراير,مارس,أبريل,مايو,يونيو,يوليو,أغسطس,سبتمبر,أكتوبر,نوفمبر,ديسمبر',
-      'date.today': 'اليوم',
-      'chart.legend.moist': 'رطوبة المنطقة', 'chart.legend.avg': 'متوسط المزرعة',
-      'chart.legend.flow': 'تدفق المحطة', 'chart.legend.used': 'تراكمي اليوم',
-      'gauge.note': 'متوسط 8 مناطق'
-    },
-    en: {
-      'brand.tag': 'When Technology Meets Nature — Made in Algeria',
-      'app.loading': 'Initializing model farm…',
-      'app.loadingSim': 'Generating 24-hour history and learning baselines…',
-      'clock.sim': 'Simulated clock',
-      'mode.auto': 'Auto mode', 'mode.manual': 'Manual mode',
-      'mode.auto.tip': 'Schedule-driven watering — click to switch to manual',
-      'mode.manual.tip': 'Manual valve control — click to return to auto',
-      'banner.critical': 'Active alerts need your attention — click to view',
-      'banner.crit': 'critical', 'banner.warn': 'warning',
-      'map.title': 'Farm map', 'map.sub': 'Click a zone or the station to inspect',
-      'legend.moist5': 'Moisture ≥ 45%', 'legend.moist4': '35–45%', 'legend.moist3': '25–35%',
-      'legend.moist2': '18–25%', 'legend.moist1': 'Below 18% (critical)',
-      'legend.off': 'Offline',
-      'kpi.moisture': 'Avg root moisture', 'kpi.used': 'Water used today',
-      'kpi.saved': 'Saved vs traditional*', 'kpi.lost': 'Estimated water loss',
-      'kpi.alerts': 'Active alerts', 'kpi.online': 'Online sensors',
-      'zones.title': 'Irrigation zones', 'zones.sub': 'Status · moisture · valve',
-      'cmd.title': 'Valve commands', 'cmd.sub': 'MQTT lifecycle',
-      'alerts.title': 'Alerts & diagnostics',
-      'chart.moist': 'Soil moisture — last 24h', 'chart.moist.sub': 'alert threshold',
-      'chart.flow': 'Station flow — last 24h', 'chart.flow.sub': 'L/min',
-      'chart.zone': 'Zone', 'chart.threshold': 'Threshold',
-      'valve.open': 'Open', 'valve.closed': 'Closed', 'valve.unknown': 'Unknown',
-      'status.ok': 'OK', 'status.learning': 'Learning', 'status.warning': 'Warning',
-      'status.critical': 'Critical', 'status.offline': 'Offline', 'status.unknown': '—',
-      'cmd.pending': 'PENDING', 'cmd.received': 'RECEIVED', 'cmd.executed': 'EXECUTED',
-      'cmd.failed': 'FAILED', 'cmd.timeout': 'TIMEOUT',
-      'cmd.irrigate': 'Irrigate now', 'cmd.minutes': 'min', 'cmd.closeNow': 'Close valve now',
-      'cmd.openNow': 'Open valve now',
-      'cmd.sent.toast': 'Command published over MQTT', 'cmd.received.toast': 'Controller received the command',
-      'cmd.executed.toast': 'Command executed — valve', 'cmd.failed.toast': 'Command failed — valve',
-      'cmd.timeout.toast': 'Command timed out (30 s) — gateway offline?',
-      'cmd.duration': 'Irrigation duration',
-      'alert.ack': 'Acknowledge', 'alert.repair': 'Repair', 'alert.repairAll': 'Repair all',
-      'alert.none': 'No alerts — system is healthy',
-      'alert.resolved': 'resolved',
-      'alert.MOISTURE_LOW': 'Low soil moisture',
-      'alert.MOISTURE_HIGH': 'High soil moisture (overwatering)',
-      'alert.SENSOR_OFFLINE': 'Moisture sensor offline',
-      'alert.GATEWAY_OFFLINE': 'Gateway offline',
-      'alert.LEAK': 'Possible network leak',
-      'alert.CLOG': 'Possible emitter clogging',
-      'alert.STUCK_OPEN': 'Valve stuck open',
-      'alert.STUCK_CLOSED': 'Valve stuck closed',
-      'alert.COMMAND_FAILED': 'Irrigation command failed',
-      'alert.zone': 'Zone', 'alert.station': 'Station',
-      'msg.MOISTURE_LOW': 'Moisture {v}% is below the {th}% threshold — irrigation advised.',
-      'msg.MOISTURE_HIGH': 'Moisture {v}% is above the {th}% limit — possible overwatering.',
-      'msg.SENSOR_OFFLINE': 'No messages from node {node} for more than {th} min.',
-      'msg.GATEWAY_OFFLINE': 'ESP32 controller silent for more than {th} s.',
-      'msg.LEAK': 'Flow {v} L/min is {p}% above the {b} L/min baseline — possible leak.',
-      'msg.CLOG': 'Flow {v} L/min is {p}% below the {b} L/min baseline — possible clogging.',
-      'msg.STUCK_OPEN': 'Valve commanded closed but flow continues ({v} L/min).',
-      'msg.STUCK_CLOSED': 'Valve commanded open but flow is near zero ({v} L/min).',
-      'msg.COMMAND_FAILED': 'Controller reported a FAILED acknowledgment.',
-      'drawer.zone': 'Zone', 'drawer.station': 'Pump & control station',
-      'drawer.moisture': 'Root moisture', 'drawer.soilTemp': 'Soil temperature',
-      'drawer.flow': 'Flow', 'drawer.pressure': 'Pump pressure',
-      'drawer.valveState': 'Valve state', 'drawer.cmdState': 'Command state',
-      'drawer.baseline': 'Learned baseline', 'drawer.battery': 'Sensor battery',
-      'drawer.signal': 'Signal strength', 'drawer.uptime': 'Uptime',
-      'drawer.firmware': 'Firmware', 'drawer.lastMsg': 'Last message',
-      'drawer.inject': 'Inject fault (simulation)',
-      'drawer.injectSub': 'Faults only alter simulator physics — the diagnosis engine infers on its own',
-      'inject.leak': 'Burst / leak', 'inject.clog': 'Emitter clogging',
-      'inject.stuckOpen': 'Stuck-open valve', 'inject.stuckClosed': 'Stuck-closed valve',
-      'inject.sensorOffline': 'Silence soil sensor', 'inject.dry': 'Drought / heatwave',
-      'inject.gatewayOffline': 'Take ESP32 gateway offline',
-      'inject.apply': 'Inject', 'inject.clear': 'Clear faults',
-      'inject.active': 'Active faults:', 'inject.none': 'No injected faults',
-      'repair.done': 'Repaired — simulated faults reset',
-      'repair.zone': 'Zone repaired',
-      'learn.toast': 'Normal baselines re-learned',
-      'learn.warn': 'Repair faults before re-learning, or a faulty state becomes the baseline.',
-      'settings.title': 'Settings',
-      'settings.farm': 'Farm & geography', 'settings.hyd': 'Hydraulic parameters',
-      'settings.rules': 'Diagnostic thresholds', 'settings.sim': 'Simulation & schedule',
-      'settings.commands': 'Valve commands',
-      'settings.save': 'Save & apply', 'settings.export': 'Export JSON',
-      'settings.import': 'Import JSON', 'settings.reset': 'Reset defaults',
-      'settings.savedToast': 'Settings saved — simulation restarted',
-      'settings.resetToast': 'Saved settings cleared — defaults applied',
-      'settings.hint': 'Settings persist in the browser under semico.config.v1. Applying regenerates the 24-hour history and baselines.',
-      'settings.invalid': 'Invalid values: ',
-      'import.badJson': 'Invalid JSON file', 'import.ok': 'Imported — press "Save & apply"',
-      'err.number': 'numeric value required',
-      'toast.newAlert': 'New alert', 'toast.alertResolved': 'Alert cleared',
-      'theme.light': 'Light mode', 'theme.dark': 'Dark mode',
-      'lang.switch': 'عربي', 'pause': 'Pause', 'resume': 'Resume',
-      'foot.sim': 'Simulated prototype — not connected to real hardware.',
-      'foot.slogan': 'When Technology Meets Nature — Made in Algeria.',
-      'est.note': '* Estimate vs flood irrigation using the 50% savings target (modelled, not field-measured).',
-      'date.months': 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec',
-      'date.today': 'Today',
-      'chart.legend.moist': 'Zone moisture', 'chart.legend.avg': 'Farm average',
-      'chart.legend.flow': 'Station flow', 'chart.legend.used': 'Daily cumulative',
-      'gauge.note': 'average of 8 zones'
-    }
-  };
-
+  const DICT = { ar: {}, en: {} };
   function register(pairs) {
-    Object.entries(pairs).forEach(([key, values]) => { DICT.ar[key] = values[0]; DICT.en[key] = values[1]; });
+    Object.entries(pairs).forEach(([key, labels]) => { DICT.ar[key] = labels[0]; DICT.en[key] = labels[1]; });
   }
   register({
+    "land.totalArea": ["مساحة الأرض", "Land area"],
+    "brand.tag": ["عندما تلتقي التكنولوجيا بالطبيعة — صنع في الجزائر", "When Technology Meets Nature — Made in Algeria"],
+    "app.loading": ["جارٍ تهيئة المزرعة الافتراضية…", "Initializing model farm…"],
+    "app.loadingSim": ["جارٍ توليد السجل الافتراضي (24 ساعة) وتعلّم الخطوط المرجعية…", "Generating 24-hour history and learning baselines…"],
+    "clock.sim": ["الساعة المتحاكاة", "Simulated clock"],
+    "banner.critical": ["تنبيهات نشطة تتطلب انتباهك — انقر لعرضها", "Active alerts need your attention — click to view"],
+    "banner.crit": ["حرج", "critical"],
+    "banner.warn": ["تحذير", "warning"],
+    "map.title": ["خريطة المزرعة", "Farm map"],
+    "map.sub": ["انقر على منطقة أو على المحطة لعرض التفاصيل", "Click a zone or the station to inspect"],
+    "legend.moist5": ["رطوبة ≥ 45%", "Moisture ≥ 45%"],
+    "legend.moist4": ["35–45%", "35–45%"],
+    "legend.moist3": ["25–35%", "25–35%"],
+    "legend.moist2": ["18–25%", "18–25%"],
+    "legend.moist1": ["أقل من 18% (حرجة)", "Below 18% (critical)"],
+    "legend.off": ["غير متصل", "Offline"],
+    "kpi.moisture": ["متوسط الرطوبة المساحي", "Area-weighted moisture"],
+    "kpi.alerts": ["التنبيهات النشطة", "Active alerts"],
+    "kpi.online": ["الحساسات المتصلة", "Online sensors"],
+    "zones.title": ["مناطق الدراسة", "Monitoring zones"],
+    "zones.sub": ["الحالة · الرطوبة · المساحة", "Status · moisture · area"],
+    "alerts.title": ["التنبيهات والتشخيص", "Alerts & diagnostics"],
+    "chart.moist": ["رطوبة التربة — آخر 24 ساعة", "Soil moisture — last 24h"],
+    "chart.moist.sub": ["عتبة الإنذار", "alert threshold"],
+    "chart.zone": ["المنطقة", "Zone"],
+    "chart.threshold": ["العتبة", "Threshold"],
+    "status.ok": ["سليم", "OK"],
+    "status.learning": ["تعلّم", "Learning"],
+    "status.warning": ["تحذير", "Warning"],
+    "status.critical": ["حرج", "Critical"],
+    "status.offline": ["غير متصل", "Offline"],
+    "status.unknown": ["—", "—"],
+    "alert.ack": ["إقرار", "Acknowledge"],
+    "alert.repair": ["إزالة الحالة", "Clear condition"],
+    "alert.repairAll": ["إزالة كل الحالات", "Clear all conditions"],
+    "alert.none": ["لا توجد تنبيهات — النظام يعمل بشكل سليم", "No alerts — system is healthy"],
+    "alert.resolved": ["مُحلول", "resolved"],
+    "alert.MOISTURE_LOW": ["رطوبة التربة منخفضة", "Low soil moisture"],
+    "alert.MOISTURE_HIGH": ["رطوبة تربة مرتفعة", "High soil moisture"],
+    "alert.SENSOR_OFFLINE": ["حساس رطوبة غير متصل", "Moisture sensor offline"],
+    "alert.GATEWAY_OFFLINE": ["البوابة غير متصلة", "Gateway offline"],
+    "alert.zone": ["المنطقة", "Zone"],
+    "msg.MOISTURE_LOW": ["الرطوبة {v}% أقل من الحد {th}% — راجع ظروف التربة.", "Moisture {v}% is below the {th}% threshold — review soil conditions."],
+    "msg.MOISTURE_HIGH": ["الرطوبة {v}% أعلى من الحد {th}% — راجع ظروف التربة.", "Moisture {v}% is above the {th}% threshold — review soil conditions."],
+    "msg.SENSOR_OFFLINE": ["لا قياسات من {node} منذ {v} دقيقة؛ الحد {th} دقيقة.", "No packets from {node} for {v} min; threshold {th} min."],
+    "msg.GATEWAY_OFFLINE": ["لا نبضة من البوابة منذ {v} ثانية؛ الحد {th} ثانية.", "No gateway heartbeat for {v} s; threshold {th} s."],
+    "drawer.zone": ["المنطقة", "Zone"],
+    "drawer.moisture": ["رطوبة الجذور", "Root moisture"],
+    "drawer.soilTemp": ["حرارة التربة", "Soil temperature"],
+    "drawer.baseline": ["الخط المرجعي", "Learned baseline"],
+    "drawer.signal": ["قوة الإشارة", "Signal strength"],
+    "drawer.lastMsg": ["آخر رسالة", "Last message"],
+    "drawer.inject": ["حقن عطل (محاكاة)", "Inject fault (simulation)"],
+    "drawer.injectSub": ["الأعطال تغيّر فيزياء المحاكي فقط — محرك التشخيص يستنتج بنفسه", "Faults only alter simulator physics — the diagnosis engine infers on its own"],
+    "inject.sensorOffline": ["قطع حساس الرطوبة", "Silence soil sensor"],
+    "inject.dry": ["تربة جافة", "Dry soil"],
+    "inject.gatewayOffline": ["قطع البوابة ESP32", "Take ESP32 gateway offline"],
+    "inject.apply": ["حقن", "Inject"],
+    "inject.clear": ["إزالة الأعطال", "Clear faults"],
+    "inject.active": ["أعطال نشطة:", "Active faults:"],
+    "inject.none": ["لا أعطال محقونة", "No injected faults"],
+    "repair.done": ["أُزيلت الحالات المحاكاة؛ تُحدّث التنبيهات عند تعافي القراءات.", "Simulated conditions cleared; alerts update as readings recover."],
+    "repair.zone": ["تم إصلاح المنطقة", "Zone repaired"],
+    "learn.toast": ["أُعيد تعلّم القيم المرجعية الطبيعية", "Normal baselines re-learned"],
+    "learn.warn": ["أصلح الأعطال قبل إعادة التعلم كي لا تُحفظ حالة معطوبة كمرجع.", "Repair faults before re-learning, or a faulty state becomes the baseline."],
+    "settings.title": ["الإعدادات", "Settings"],
+    "settings.farm": ["المزرعة والجغرافيا", "Farm & geography"],
+    "settings.rules": ["عتبات التشخيص", "Diagnostic thresholds"],
+    "settings.sim": ["المحاكاة والمناخ", "Simulation and climate"],
+    "settings.save": ["حفظ وتطبيق", "Save & apply"],
+    "settings.export": ["تصدير JSON", "Export JSON"],
+    "settings.import": ["استيراد JSON", "Import JSON"],
+    "settings.reset": ["استعادة الافتراضي", "Reset defaults"],
+    "settings.savedToast": ["حُفظت الإعدادات وأُعيد تشغيل المحاكاة", "Settings saved — simulation restarted"],
+    "settings.resetToast": ["حُذفت الإعدادات المحفوظة — تُطبَّق الافتراضيات", "Saved settings cleared — defaults applied"],
+    "settings.hint": ["حفظ محلي فقط. التطبيق يعيد تشغيل المحاكاة وسجل ٢٤ ساعة. تُفحص كل القيم قبل الحفظ.", "Browser-local settings only. Applying restarts the simulation and 24-hour history. All values are validated before saving."],
+    "settings.invalid": ["قيم غير صالحة: ", "Invalid values: "],
+    "import.badJson": ["ملف JSON غير صالح", "Invalid JSON file"],
+    "import.ok": ["تم الاستيراد — اضغط \"حفظ وتطبيق\"", "Imported — press \"Save & apply\""],
+    "err.number": ["قيمة رقمية مطلوبة", "numeric value required"],
+    "toast.newAlert": ["تنبيه جديد", "New alert"],
+    "toast.alertResolved": ["زال التنبيه", "Alert cleared"],
+    "theme.light": ["الوضع الفاتح", "Light mode"],
+    "theme.dark": ["الوضع الداكن", "Dark mode"],
+    "lang.switch": ["EN", "AR"],
+    "pause": ["إيقاف مؤقت", "Pause"],
+    "resume": ["متابعة", "Resume"],
+    "foot.sim": ["نموذج محاكاة — غير متصل بعتاد حقيقي.", "Simulated prototype — not connected to real hardware."],
+    "foot.slogan": ["عندما تلتقي التكنولوجيا بالطبيعة — صنع في الجزائر.", "When Technology Meets Nature — Made in Algeria."],
+    "date.months": ["يناير,فبراير,مارس,أبريل,مايو,يونيو,يوليو,أغسطس,سبتمبر,أكتوبر,نوفمبر,ديسمبر", "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec"],
+    "date.today": ["اليوم", "Today"],
+    "chart.legend.moist": ["رطوبة المنطقة", "Zone moisture"],
+    "chart.legend.avg": ["المتوسط حسب المساحة", "Area-weighted average"],
     "field.farm.boundary": ["حدود الأرض: نقاط خط العرض وخط الطول", "Land boundary: latitude, longitude points"],
     "unit.m2": ["م²", "m²"],
     "land.define": ["تحديد حدود الأرض", "Define land"],
@@ -1676,7 +1522,7 @@ const SemI18n = (() => {
     "land.area": ["مساحة الدراسة: {area} م²", "Study area: {area} m²"],
     "land.coordinates": ["إدخال الإحداثيات بالدرجات", "Enter coordinates in degrees"],
     "land.coordinatesHint": ["كل سطر: خط العرض، خط الطول بالدرجات، أو مصفوفة أزواج JSON. استخدم ٣–٦٤ نقطة. الحقل الفارغ في الإعدادات يعيد المستطيل.", "One latitude, longitude pair in degrees per line, or a JSON array of pairs. Use 3–64 points. An empty settings field restores the rectangle."],
-    "land.referenceHint": ["الحدود المخصصة تحدد مساحة الدراسة. العرض والطول مرجع لكثافة النقاطات؛ الدوران يوجّه شبكة المناطق.", "Custom points fix the footprint. Width/height remain the emitter-density reference; rotation orients the zone grid."],
+    "land.referenceHint": ["الحدود المخصصة تحدد مساحة الدراسة. العرض والطول للمستطيل فقط؛ الدوران يوجّه شبكة المناطق.", "Custom points define the study footprint. Width/height apply only to the rectangle; rotation orients the zone grid."],
     "land.restartHint": ["الدراسة متوقفة أثناء الرسم. التطبيق يعيد إنشاء المناطق وسجل ٢٤ ساعة؛ الإلغاء يحافظ على الدراسة الحالية.", "The study is paused while editing. Applying rebuilds zones and 24-hour history; cancelling keeps the current study."],
     "land.scopeHint": ["تُقصّ المناطق عند الحدود، وتُستبعد الخلايا الفارغة. تعتمد الحسابات على المساحة الفعلية.", "Zones are clipped to the boundary and empty cells are excluded. Calculations use the actual land area."],
     "land.finishFirst": ["طبّق الحدود أو ألغِ الرسم أولاً.", "Apply or cancel the boundary edit first."],
@@ -1690,70 +1536,64 @@ const SemI18n = (() => {
     "err.boundaryArea": ["المساحة المسموحة بين 100 و4,000,000 م².", "Allowed area: 100–4,000,000 m²."],
     "err.boundaryExtent": ["هذه الدراسة المحلية تدعم امتداداً لا يتجاوز 5 كم في كل اتجاه.", "This local model supports at most 5 km in either direction."],
     "err.boundaryGeometry": ["تعذر تقسيم هذه الحدود؛ راجع النقاط.", "This boundary could not be partitioned. Check its points."],
-    "kpi.moisture": ["متوسط الرطوبة المساحي", "Area-weighted moisture"],
-    "chart.legend.avg": ["المتوسط حسب المساحة", "Area-weighted average"],
-    'brand.logoAlt': ['شعار جامعة العلوم والتكنولوجيا هواري بومدين', 'USTHB university logo'],
-    'app.title': ['SEMICO — تشخيص الري الذكي', 'SEMICO — Smart irrigation diagnostics'],
-    'app.demo': ['محاكاة محلية · حرم باب الزوار', 'Local simulation · Bab Ezzouar campus'],
-    'kpi.irrigating': ['مناطق تُروى', 'Irrigating zones'], 'kpi.pump': ['المضخة', 'Pump'],
-    'pump.on': ['تعمل', 'Running'], 'pump.off': ['متوقفة', 'Stopped'],
-    'common.close': ['إغلاق', 'Close'], 'common.active': ['نشط', 'Active'],
-    'common.cleared': ['زال', 'Cleared'], 'common.noData': ['لا بيانات حديثة', 'No fresh data'],
-    'tab.alarms': ['سجل التشخيص', 'Alarm feed'], 'tab.commands': ['سجل الأوامر', 'Command log'],
-    'cmd.empty': ['لم تُرسل أوامر يدوية بعد.', 'No manual commands sent yet.'],
-    'cmd.sub': ['قناة أوامر محاكاة', 'Simulated command channel'],
-    'cmd.sent.toast': ['أُنشئ أمر محاكاة', 'Simulated command created'],
-    'cmd.timeout.toast': ['انتهت مهلة الأمر', 'Command timed out'],
-    'cmd.pending': ['قيد الإرسال', 'Pending'], 'cmd.received': ['تم الاستلام', 'Received'],
-    'cmd.executed': ['تم التنفيذ', 'Executed'], 'cmd.failed': ['فشل', 'Failed'],
-    'cmd.payload': ['محتوى الرسالة', 'JSON payload'], 'cmd.topic': ['الموضوع', 'Topic'],
-    'cmd.transitions': ['مراحل التنفيذ', 'State transitions'],
-    'cmd.clockHint': ['مهل الأوامر بالثواني الحقيقية؛ القياسات والإنذارات بوقت المحاكاة.', 'Command deadlines use real seconds; telemetry and alarms use simulation time.'],
-    'reason.timeout': ['انتهت المهلة دون تنفيذ مؤكد', 'Timed out without confirmed execution'],
-    'reason.stuckValve': ['لم يصل الصمام إلى الوضع المطلوب', 'Valve did not reach the requested position'],
-    'reason.superseded': ['استُبدل بأمر أحدث', 'Superseded by a newer command'],
-    'reason.cancelled': ['أُلغي عند تغيير الوضع', 'Cancelled by a mode change'],
-    'msg.COMMAND_FAILED': ['فشل الأمر بعد {v} ثانية؛ المهلة {th} ثانية.', 'Command failed after {v} s; timeout {th} s.'],
-    'msg.SENSOR_OFFLINE': ['لا قياسات من {node} منذ {v} دقيقة؛ الحد {th} دقيقة.', 'No packets from {node} for {v} min; threshold {th} min.'],
-    'msg.GATEWAY_OFFLINE': ['لا نبضة من البوابة منذ {v} ثانية؛ الحد {th} ثانية.', 'No gateway heartbeat for {v} s; threshold {th} s.'],
-    'alert.GATEWAY_OFFLINE': ['البوابة غير متصلة', 'Gateway offline'],
-    'fault.hint': ['التسريب والانسداد يحتاجان إلى صمام مفتوح. تبقى الأعطال حتى إزالتها؛ قد تبقى إنذارات الرطوبة حتى تعافي التربة.', 'Leak/clog diagnosis needs an open valve. Faults persist until cleared; moisture alarms remain until the soil recovers.'],
-    'inject.remove': ['إزالة', 'Clear'], 'inject.apply': ['حقن', 'Inject'],
-    'drawer.expected': ['أمر الصمام', 'Valve command'], 'drawer.samples': ['عينات المرجع', 'Baseline samples'],
-    'drawer.meanStd': ['المتوسط والانحراف المعياري', 'Mean and standard deviation'],
-    'chart.zoneFlow': ['تدفق المنطقة — آخر 24 ساعة', 'Zone flow — last 24 hours'],
-    'chart.legend.zoneFlow': ['تدفق المنطقة', 'Zone flow'], 'chart.noSample': ['قياس مفقود', 'Missing sample'],
-    'settings.soil': ['فيزياء التربة', 'Soil physics'], 'settings.ui': ['اللغة والمظهر', 'Language and appearance'],
-    'settings.range': ['النطاق: {min}–{max} {unit}', 'Range: {min}–{max} {unit}'],
-    'settings.rangeLabel': ['النطاق', 'Range'],
-    'settings.hint': ['حفظ محلي فقط. التطبيق يعيد تشغيل المحاكاة وسجل ٢٤ ساعة. تُفحص كل القيم قبل الحفظ.', 'Browser-local settings only. Applying restarts the simulation and 24-hour history. All values are validated before saving.'],
-    'settings.storage': ['تعذر الحفظ المحلي؛ صدّر الإعدادات للاحتفاظ بها.', 'Local storage is unavailable; export settings to retain them.'],
-    'err.range': ['{field}: أدخل قيمة بين {min} و{max} {unit}.', '{field}: enter a value between {min} and {max} {unit}.'],
-    'err.text': ['{field}: أدخل نصاً صالحاً حتى ١٤٠ حرفاً.', '{field}: enter valid text, up to 140 characters.'],
-    'err.id': ['معرّف المزرعة: أحرف لاتينية صغيرة وأرقام وشرطات فقط.', 'Farm ID must contain lowercase letters, digits and hyphens.'],
-    'err.schedule': ['يجب أن تغطي نافذة الري جميع المناطق وأن تسمح بتعلّم المرجع.', 'The watering window must cover every zone and allow baseline learning.'],
-    'err.pressure': ['ضغط الإغلاق أكبر من ضغط التصميم، وضغط التصميم أكبر من ضغط المنظّم.', 'Shutoff pressure must exceed design pressure, which must exceed regulator pressure.'],
-    'err.timing': ['يجب أن تتجاوز المهلة مجموع تأخير الاستلام والتنفيذ.', 'Timeout must exceed the maximum receive plus execution delay.'],
-    'err.silence': ['مهلة البوابة يجب ألا تتجاوز مهلة الحساس.', 'Gateway timeout must not exceed sensor timeout.'],
-    'err.choice': ['اختر قيمة مدعومة.', 'Choose a supported value.'],
-    'err.invalidCommand': ['أمر أو منطقة أو مدة غير صالحة.', 'Invalid command, zone or duration.'],
-    'err.invalidFault': ['عطل أو منطقة غير صالحة.', 'Invalid fault or zone.'],
-    'err.gatewayUnavailable': ['تغيير الوضع يتطلب اتصال البوابة.', 'Changing mode requires an online gateway.'],
-    'err.import': ['ملف إعدادات غير صالح أو يتجاوز ميغابايت واحداً.', 'Invalid settings file or file larger than one megabyte.'],
-    'language.ar': ['العربية', 'Arabic'], 'language.en': ['الإنجليزية', 'English'],
-    'lang.switch': ['EN', 'AR'], 'unit.degree': ['درجة', '°'], 'unit.level': ['مستوى', 'level'],
-    'unit.metre': ['م', 'm'], 'unit.count': ['عدد', 'count'], 'unit.lph': ['لتر/ساعة', 'L/h'],
-    'unit.lpm': ['لتر/دقيقة', 'L/min'], 'unit.bar': ['بار', 'bar'], 'unit.mm': ['مم', 'mm'],
-    'unit.percent': ['٪', '%'], 'unit.minute': ['دقيقة', 'min'], 'unit.second': ['ثانية', 's'],
-    'unit.samples': ['عينة', 'samples'], 'unit.perMinute': ['لكل دقيقة', '/min'],
-    'unit.mmDay': ['مم/يوم', 'mm/day'], 'unit.speed': ['دقيقة محاكاة/دقيقة حقيقية', 'sim min/real min'],
-    'unit.seed': ['بذرة', 'seed'], 'unit.ha': ['هكتار', 'ha'], 'unit.litre': ['لتر', 'L'],
-    'unit.m3': ['م³', 'm³'], 'unit.celsius': ['°م', '°C'], 'unit.dbm': ['ديسيبل ميلي واط', 'dBm'],
-    'map.offline': ['صور الأقمار غير متاحة — الخريطة التخطيطية تعمل محلياً.', 'Satellite imagery unavailable — the farm overlay works offline.'],
-    'map.attribution': ['صور © Esri، Maxar، Earthstar Geographics · Leaflet', 'Imagery © Esri, Maxar, Earthstar Geographics · Leaflet'],
-    'map.zoomIn': ['تكبير', 'Zoom in'], 'map.zoomOut': ['تصغير', 'Zoom out'],
-    'map.fit': ['إظهار المزرعة كاملة', 'Fit farm'], 'playback.speed': ['سرعة المحاكاة', 'Simulation speed'],
-    'mode.manual.tip': ['الوضع اليدوي يغلق صمامات الجدولة؛ انقر للعودة إلى التلقائي.', 'Manual mode closes schedule-owned valves; click to resume auto.']
+    "brand.logoAlt": ["شعار جامعة العلوم والتكنولوجيا هواري بومدين", "USTHB university logo"],
+    "app.title": ["SEMICO — مراقبة التربة والأرض", "SEMICO — Soil and land monitoring"],
+    "app.demo": ["محاكاة محلية · حرم باب الزوار", "Local simulation · Bab Ezzouar campus"],
+    "common.close": ["إغلاق", "Close"],
+    "common.active": ["نشط", "Active"],
+    "common.cleared": ["زال", "Cleared"],
+    "common.noData": ["لا بيانات حديثة", "No fresh data"],
+    "tab.alarms": ["سجل التشخيص", "Alarm feed"],
+    "fault.hint": ["تؤثر ظروف الجفاف والرطوبة الزائدة على قراءات التربة. تبقى الأعطال حتى إزالتها؛ تزول التنبيهات بعد تعافي القراءات.", "Dry and wet conditions change soil readings. Faults remain until cleared; alerts clear when readings recover."],
+    "inject.remove": ["إزالة", "Clear"],
+    "drawer.samples": ["عينات المرجع", "Baseline samples"],
+    "drawer.meanStd": ["المتوسط والانحراف المعياري", "Mean and standard deviation"],
+    "chart.noSample": ["قياس مفقود", "Missing sample"],
+    "settings.soil": ["خصائص التربة", "Soil properties"],
+    "settings.ui": ["اللغة والمظهر", "Language and appearance"],
+    "settings.range": ["النطاق: {min}–{max} {unit}", "Range: {min}–{max} {unit}"],
+    "settings.rangeLabel": ["النطاق", "Range"],
+    "settings.storage": ["تعذر الحفظ المحلي؛ صدّر الإعدادات للاحتفاظ بها.", "Local storage is unavailable; export settings to retain them."],
+    "err.range": ["{field}: أدخل قيمة بين {min} و{max} {unit}.", "{field}: enter a value between {min} and {max} {unit}."],
+    "err.text": ["{field}: أدخل نصاً صالحاً حتى ١٤٠ حرفاً.", "{field}: enter valid text, up to 140 characters."],
+    "err.id": ["معرّف المزرعة: أحرف لاتينية صغيرة وأرقام وشرطات فقط.", "Farm ID must contain lowercase letters, digits and hyphens."],
+    "err.silence": ["مهلة البوابة يجب ألا تتجاوز مهلة الحساس.", "Gateway timeout must not exceed sensor timeout."],
+    "err.choice": ["اختر قيمة مدعومة.", "Choose a supported value."],
+    "err.invalidFault": ["عطل أو منطقة غير صالحة.", "Invalid fault or zone."],
+    "err.import": ["ملف إعدادات غير صالح أو يتجاوز ميغابايت واحداً.", "Invalid settings file or file larger than one megabyte."],
+    "language.ar": ["العربية", "Arabic"],
+    "language.en": ["الإنجليزية", "English"],
+    "unit.degree": ["درجة", "°"],
+    "unit.level": ["مستوى", "level"],
+    "unit.metre": ["م", "m"],
+    "unit.count": ["عدد", "count"],
+    "unit.mm": ["مم", "mm"],
+    "unit.percent": ["٪", "%"],
+    "unit.minute": ["دقيقة", "min"],
+    "unit.second": ["ثانية", "s"],
+    "unit.samples": ["عينة", "samples"],
+    "unit.perMinute": ["لكل دقيقة", "/min"],
+    "unit.mmDay": ["مم/يوم", "mm/day"],
+    "unit.speed": ["دقيقة محاكاة/دقيقة حقيقية", "sim min/real min"],
+    "unit.seed": ["بذرة", "seed"],
+    "unit.ha": ["هكتار", "ha"],
+    "unit.celsius": ["°م", "°C"],
+    "unit.dbm": ["ديسيبل ميلي واط", "dBm"],
+    "map.offline": ["صور الأقمار غير متاحة — الخريطة التخطيطية تعمل محلياً.", "Satellite imagery unavailable — the farm overlay works offline."],
+    "map.attribution": ["صور © Esri، Maxar، Earthstar Geographics · Leaflet", "Imagery © Esri, Maxar, Earthstar Geographics · Leaflet"],
+    "map.zoomIn": ["تكبير", "Zoom in"],
+    "map.zoomOut": ["تصغير", "Zoom out"],
+    "map.fit": ["إظهار المزرعة كاملة", "Fit farm"],
+    "playback.speed": ["سرعة المحاكاة", "Simulation speed"],
+    "kpi.reporting": ["الحساسات المرسلة", "Reporting sensors"],
+    "kpi.gateway": ["البوابة", "Gateway"],
+    "gateway.online": ["متصلة", "Online"],
+    "gateway.offline": ["غير متصلة", "Offline"],
+    "drawer.gateway": ["بوابة الاتصال", "Sensor gateway"],
+    "alert.gateway": ["البوابة", "Gateway"],
+    "chart.temperature": ["حرارة التربة — آخر ٢٤ ساعة", "Soil temperature — last 24 hours"],
+    "inject.wet": ["رطوبة تربة زائدة", "Wet soil"],
+    "err.time": ["أدخل وقت بدء المحاكاة بتنسيق ساعة:دقيقة من 00:00 إلى 23:59.", "Enter a simulation start time from 00:00 to 23:59 (HH:MM)."],
   });
   let lang = 'ar';
   const missing = new Set();
@@ -1917,58 +1757,6 @@ const SemFarm = (() => {
     }));
     return [...edges.values()];
   }
-  function clipLine(first, second, ring) {
-    if (distance(first, second) < EPS) return [];
-    const times = [0, 1], delta = second.map((value, axis) => value - first[axis]);
-    ring.forEach((point, index) => {
-      const next = ring[(index + 1) % ring.length], edge = next.map((value, axis) => value - point[axis]);
-      const offset = point.map((value, axis) => value - first[axis]);
-      const denominator = delta[0] * edge[1] - delta[1] * edge[0];
-      if (Math.abs(denominator) > EPS) {
-        const time = (offset[0] * edge[1] - offset[1] * edge[0]) / denominator;
-        const along = (offset[0] * delta[1] - offset[1] * delta[0]) / denominator;
-        if (time >= -EPS && time <= 1 + EPS && along >= -EPS && along <= 1 + EPS) times.push(Math.max(0, Math.min(1, time)));
-      } else if (onSegment(point, first, second) || onSegment(next, first, second)) {
-        const axis = Math.abs(delta[0]) > Math.abs(delta[1]) ? 0 : 1;
-        [point, next].forEach(endpoint => times.push(Math.max(0, Math.min(1, (endpoint[axis] - first[axis]) / delta[axis]))));
-      }
-    });
-    const sorted = [...new Set(times)].sort((left, right) => left - right), intervals = [];
-    for (let index = 1; index < sorted.length; index++) {
-      const start = sorted[index - 1], end = sorted[index];
-      if (end - start <= 1e-12 || !contains(blend(first, second, (start + end) / 2), ring)) continue;
-      const last = intervals[intervals.length - 1];
-      if (last && Math.abs(last[1] - start) < 1e-12) last[1] = end; else intervals.push([start, end]);
-    }
-    return intervals.map(interval => interval.map(time => blend(first, second, time)));
-  }
-  function router(ring, start) {
-    const nodes = [start, ...ring], links = nodes.map(() => []), distances = nodes.map(() => Infinity), previous = nodes.map(() => -1), visited = new Set();
-    const visible = (first, second) => {
-      if (distance(first, second) < EPS) return true;
-      const segments = clipLine(first, second, ring);
-      return segments.length === 1 && distance(segments[0][0], first) < 1e-5 && distance(segments[0][1], second) < 1e-5;
-    };
-    nodes.forEach((first, index) => nodes.forEach((second, other) => {
-      if (other > index && visible(first, second)) { const length = distance(first, second); links[index].push([other, length]); links[other].push([index, length]); }
-    }));
-    distances[0] = 0;
-    for (let step = 0; step < nodes.length; step++) {
-      let current = -1;
-      distances.forEach((value, index) => { if (!visited.has(index) && (current < 0 || value < distances[current])) current = index; });
-      if (current < 0 || !Number.isFinite(distances[current])) break;
-      visited.add(current);
-      links[current].forEach(([next, length]) => { if (distances[current] + length < distances[next]) { distances[next] = distances[current] + length; previous[next] = current; } });
-    }
-    return end => {
-      if (visible(start, end)) return [start, end];
-      let best = -1, total = Infinity;
-      nodes.forEach((point, index) => { const cost = distances[index] + distance(point, end); if (cost < total && visible(point, end)) { best = index; total = cost; } });
-      if (best < 0) throw new Error('boundaryGeometry');
-      const path = [end]; for (let current = best; current >= 0; current = previous[current]) path.unshift(nodes[current]);
-      return path;
-    };
-  }
   function centroid(ring) {
     const signed = signedArea(ring), sum = [0, 0];
     ring.forEach((point, index) => { const next = ring[(index + 1) % ring.length], weight = point[0] * next[1] - next[0] * point[1];
@@ -1990,7 +1778,7 @@ const SemFarm = (() => {
     const ring = custom ? info.points.map(frame.toLocal) : [[-settings.width / 2, -settings.height / 2], [settings.width / 2, -settings.height / 2],
       [settings.width / 2, settings.height / 2], [-settings.width / 2, settings.height / 2]];
     const extent = bounds(ring), width = extent.maxX - extent.minX, height = extent.maxY - extent.minY;
-    const triangles = triangulate(ring), zones = [], localZones = [], vertexBuckets = new Map();
+    const triangles = triangulate(ring), zones = [], vertexBuckets = new Map();
     function canonicalPoint(point) {
       const [column, row] = point.map(value => Math.floor(value / EPS));
       for (let across = -1; across <= 1; across++) for (let down = -1; down <= 1; down++) {
@@ -2009,25 +1797,16 @@ const SemFarm = (() => {
       const areaM2 = parts.reduce((sum, part) => sum + area(part), 0);
       if (areaM2 <= EPS) continue;
       const center = insideAnchor(parts, [0, 1].map(axis => parts.reduce((sum, part) => sum + centroid(part)[axis] * area(part), 0) / areaM2));
-      const valve = insideAnchor(parts, [cell.minX + Math.min(5, width / settings.cols * 0.1), (cell.minY + cell.maxY) / 2]);
-      const soil = insideAnchor(parts, [center[0] + 12, center[1] + 18], 1), occupied = bounds(parts.flat());
-      const dripLines = Array.from({ length: settings.drawnLines }, (unused, index) => {
-        const level = occupied.minY + (occupied.maxY - occupied.minY) * (index + 0.5) / settings.drawnLines;
-        return clipLine([occupied.minX, level], [occupied.maxX, level], ring);
-      }).flat();
+      const soil = insideAnchor(parts, [center[0] + 12, center[1] + 18], 1);
       zones.push({ id: 'Z' + (zones.length + 1), idx: zones.length, row, column, areaM2,
         poly: parts.map(part => [part.map(frame.toLL)]), pieces: parts.map(part => part.map(frame.toLL)),
         outline: exteriorEdges(parts).map(edge => edge.map(frame.toLL)), center: frame.toLL(center),
-        valveLL: frame.toLL(valve), soilLL: frame.toLL(soil), dripLines: dripLines.map(line => line.map(frame.toLL)) });
-      localZones.push({ parts, valve });
+        soilLL: frame.toLL(soil) });
     }
     if (!zones.length) throw new Error('boundaryGeometry');
-    const station = insideAnchor(localZones[0].parts, [extent.minX + width * 0.025, extent.minY + height * 0.025]);
-    const gateway = insideAnchor(localZones[0].parts, [station[0] + 3, station[1] + 8], 1), route = router(ring, station);
+    const gateway = insideAnchor(triangles, [extent.minX + width * 0.025, extent.minY + height * 0.025], 2);
     cachedFarm = { lat: origin[0], lng: origin[1], zoom: settings.zoom, custom, boundary: custom ? info.points : ring.map(frame.toLL),
-      areaM2: area(ring), referenceAreaM2: settings.width * settings.height / (settings.rows * settings.cols),
-      zones, nZones: zones.length, widthM: width, heightM: height, stationLL: frame.toLL(station), gatewayLL: frame.toLL(gateway),
-      mainPipe: route(gateway).map(frame.toLL), laterals: localZones.map(zone => route(zone.valve).map(frame.toLL)) };
+      areaM2: area(ring), zones, nZones: zones.length, widthM: width, heightM: height, gatewayLL: frame.toLL(gateway) };
     cacheKey = key; return cachedFarm;
   }
   function mount(cfg, farm, onSelect) {
@@ -2039,8 +1818,6 @@ const SemFarm = (() => {
     tiles.on('tileload', () => { if (!view.dead) { view.tileOffline = false; document.getElementById('tileStatus').hidden = true; } });
     tiles.addTo(map);
     L.polygon(farm.boundary, { color: '#fff', weight: 2, fill: false, dashArray: '7 4', interactive: false }).addTo(view.fieldLayer);
-    L.polyline(farm.mainPipe, { color: '#00A859', weight: 4, interactive: false }).addTo(view.fieldLayer);
-    farm.laterals.forEach(line => L.polyline(line, { color: '#bdebd5', weight: 2, interactive: false }).addTo(view.fieldLayer));
     function marker(position, kind, target, glyph) {
       const item = L.marker(position, { keyboard: true, icon: L.divIcon({ className: '',
         html: '<span class="map-node ' + kind + '">' + glyph + '</span>', iconSize: [20, 20] }) }).addTo(view.fieldLayer);
@@ -2055,14 +1832,11 @@ const SemFarm = (() => {
       const label = L.marker(zone.center, { keyboard: false, icon: L.divIcon({
         className: 'sem-zlabel', html: '<b>' + zone.id + '</b><span>—</span>', iconSize: [46, 36] }) }).addTo(view.fieldLayer);
       label.on('click', () => onSelect(zone.id));
-      const lines = zone.dripLines.map(line => L.polyline(line, { color: '#d4f7e5', weight: 1.5, interactive: false }).addTo(view.fieldLayer));
-      const valve = marker(zone.valveLL, 'valve', zone.id, '◇');
       const sensor = marker(zone.soilLL, 'soil', zone.id,
         '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1C6 5 3 7 3 10a5 5 0 0 0 10 0c0-3-3-5-5-9Z"/></svg>');
-      view.zones[zone.id] = { polygon, outline, label, lines, valve, sensor };
+      view.zones[zone.id] = { polygon, outline, label, sensor };
     });
-    marker(farm.stationLL, 'station', 'ST', '⏻');
-    marker(farm.gatewayLL, 'gateway', 'ST', '⌁');
+    marker(farm.gatewayLL, 'gateway', 'GW', '⌁');
     fit(view, cfg.farm.zoom);
     relabel(view);
     return view;
@@ -2074,7 +1848,7 @@ const SemFarm = (() => {
   function relabel(view) {
     view.markers.forEach(item => {
       const element = item.marker.getElement();
-      const text = item.target === 'ST' ? SemI18n.t('drawer.station') : SemI18n.t('drawer.zone') + ' ' + item.target.slice(1);
+      const text = item.target === 'GW' ? SemI18n.t('drawer.gateway') : SemI18n.t('drawer.zone') + ' ' + item.target.slice(1);
       element?.setAttribute('aria-label', text); element?.setAttribute('title', text);
     });
     [['in', 'map.zoomIn'], ['out', 'map.zoomOut']].forEach(([suffix, key]) => {
@@ -2086,8 +1860,7 @@ const SemFarm = (() => {
     view.farm.zones.forEach(zone => {
       const status = engine.status(zone.id), packet = engine.latest[zone.id];
       const moisture = status === 'offline' ? null : packet?.moisture;
-      const flowing = status !== 'offline' && packet?.valve === 'open' && packet.flowLpm > 0;
-      const key = [moisture, status, flowing, selected === zone.id].join(':');
+      const key = [moisture, status, selected === zone.id].join(':');
       if (view.signature[zone.id] === key) return;
       view.signature[zone.id] = key;
       const color = moisture == null ? '#94a3b8' : moisture >= 45 ? '#0077B6' : moisture >= 35 ? '#00A859'
@@ -2098,18 +1871,16 @@ const SemFarm = (() => {
         weight: selected === zone.id ? 3 : 1.5, dashArray: status === 'offline' ? '5 4' : '' });
       const label = layer.label.getElement();
       if (label) label.innerHTML = '<b>' + zone.id + '</b><span>' + (moisture == null ? '—' : Math.round(moisture) + '%') + '</span>';
-      layer.valve.getElement()?.firstElementChild.classList.toggle('flowing', flowing);
-      layer.lines.forEach(line => line.getElement()?.classList.toggle('water-flow', flowing));
+      const sensor = layer.sensor.getElement()?.firstElementChild;
+      if (sensor) sensor.style.color = status === 'offline' ? '#94a3b8' : 'var(--primary)';
     });
   }
-  return { build, mount, fit, relabel, update, boundaryInfo, cleanBoundary, parsePoints, formatPoints, projection, contains, clipLine, area };
+  return { build, mount, fit, relabel, update, boundaryInfo, cleanBoundary, parsePoints, formatPoints, projection, contains, area };
 })();
 
 /* ============================== SemSim ==============================
-   Minute-step physics: pump curve, zone hydraulics, soil moisture,
-   scheduling, fault injection and the MQTT-style valve-command lifecycle.
-   Injected faults change physics ONLY — the diagnosis engine (SemRules)
-   sees telemetry and commands, never the fault list.            */
+   Soil moisture responds to daily evaporation, drainage and wet/dry scenarios.
+   Connectivity controls packet delivery, never the underlying soil state. */
 const SemSim = (() => {
   function mulberry32(seed) {
     let state = seed >>> 0;
@@ -2121,233 +1892,73 @@ const SemSim = (() => {
     };
   }
   function create(cfg, farm) {
-    const rng = mulberry32(cfg.sim.seed);
-    const commandRng = mulberry32(cfg.sim.seed ^ 0x51C01);
-    const listeners = new Set();
-    const zoneDesign = cfg.hyd.emittersPerZone * cfg.hyd.emitterLph / 60;
-    const designFlows = farm.zones.map(zone => zoneDesign * zone.areaM2 / farm.referenceAreaM2), turnFlows = [];
-    for (let index = 0; index < designFlows.length; index += cfg.sim.zonesPerTurn) turnFlows.push(designFlows.slice(index, index + cfg.sim.zonesPerTurn).reduce((sum, flow) => sum + flow, 0));
-    const stationDesign = Math.max(...turnFlows);
-    const pumpCoefficient = (cfg.hyd.pumpShutoffBar - cfg.hyd.pumpDesignBar) / stationDesign ** 2;
-    const startMinute = SemConfig.timeMinutes(cfg.sim.startTime);
-    const endMinute = SemConfig.timeMinutes(cfg.sim.endTime);
-    const startAt = new Date();
-    startAt.setHours(0, startMinute - 10, 0, 0);
+    const rng = mulberry32(cfg.sim.seed), listeners = new Set();
+    const startAt = new Date(); startAt.setHours(0, SemConfig.timeMinutes(cfg.sim.startTime), 0, 0);
     startAt.setTime(startAt.getTime() - 86400000);
-    const sim = {
-      now: new Date(startAt), mode: 'auto', warmup: true, zoneDesign, stationDesign,
-      zones: farm.zones.map((zone, index) => ({
-        id: zone.id, areaM2: zone.areaM2, nominalFlowLpm: designFlows[index], moisture: 40 + rng() * 8,
-        soilTempC: 19, batteryPct: 90, rssi: -60,
-        valveCmd: 'closed', valveMeasured: 'closed', flowLpm: 0,
-        faults: new Set(), autoCloseAt: null
-      })),
-      station: { flowLpm: 0, pumpBar: 0, pumpOn: false, volL: 0, signalDbm: -58, faults: new Set() },
-      usedTodayL: 0, commands: [], cmdSeq: 0, events: [], msgs: [], steps: 0
-    };
-    const round = (value, digits = 2) => Number(value.toFixed(digits));
-    const isGatewayUp = () => !sim.station.faults.has('gatewayOffline');
+    const sim = { now: new Date(startAt), steps: 0,
+      zones: farm.zones.map(zone => ({ id: zone.id, areaM2: zone.areaM2, moisture: 40 + rng() * 8,
+        soilTempC: 20, rssi: -60, faults: new Set() })), gateway: { rssi: -58, faults: new Set() }, msgs: [] };
+    const round = value => Number(value.toFixed(2));
+    const clamp = value => Math.max(0, Math.min(100, value));
+    const measure = value => value * (1 + (rng() * 2 - 1) * cfg.sim.noisePct / 100);
+    const isGatewayUp = () => !sim.gateway.faults.has('gatewayOffline');
     const findZone = id => sim.zones.find(zone => zone.id === id);
-    const publish = message => {
-      const packet = Object.freeze(message);
-      listeners.forEach(listener => listener(packet));
-      return packet;
-    };
-    function subscribe(listener) {
-      listeners.add(listener);
-      return () => listeners.delete(listener);
-    }
-    // A local safety interlock closes schedule-owned valves on entry to manual mode.
-    function enterManual() {
-      if (sim.mode === 'manual') return;
-      sim.zones.forEach(zone => { zone.valveCmd = 'closed'; zone.autoCloseAt = null; });
-      sim.mode = 'manual';
-      hydraulics();
-    }
-    function transition(command, state, reason = null, wallNow = performance.now()) {
-      command.status = state;
-      command.reason = reason;
-      const elapsedMs = Math.max(0, Math.round(wallNow - command.issuedMono));
-      const record = { state, ts: sim.now.getTime(), wallTs: command.wallTs + elapsedMs, elapsedMs, reason };
-      command.transitions.push(record);
-      publish({ type: 'command', node: 'ST', ts: record.ts, commandId: command.id,
-        zone: command.zone, state, reason, elapsedMs, timeoutMs: cfg.commands.timeoutSec * 1000 });
-      if (!sim.warmup) sim.events.push({ kind: state, zone: command.zone, id: command.id });
-    }
-    function sendCommand(zoneId, action, durationMin = cfg.commands.defaultMin) {
-      if (!findZone(zoneId) || !['OPEN', 'CLOSE'].includes(action) ||
-          !Number.isFinite(durationMin) || durationMin < 1 || durationMin > 240) throw new Error('invalidCommand');
-      for (const previous of sim.commands) {
-        if (previous.zone === zoneId && ['PENDING', 'RECEIVED'].includes(previous.status)) transition(previous, 'FAILED', 'superseded');
-      }
-      if (isGatewayUp()) enterManual();
-      const command = {
-        id: 'c' + (++sim.cmdSeq), zone: zoneId, action,
-        durationMin: action === 'OPEN' ? durationMin : 0,
-        ts: sim.now.getTime(), wallTs: Date.now(), issuedMono: performance.now(),
-        receiveAfterMs: (cfg.commands.receiveMinSec + commandRng() *
-          (cfg.commands.receiveMaxSec - cfg.commands.receiveMinSec)) * 1000,
-        receivedMono: null, status: null, reason: null, transitions: [],
-        topic: 'semico/v1/devices/esp32-' + cfg.farm.id + '/commands/valve'
-      };
-      command.payload = { id: command.id, zone: zoneId, action, durationMin: command.durationMin };
-      sim.commands.push(command);
-      transition(command, 'PENDING');
-      while (sim.commands.length > 100) {
-        const oldest = sim.commands.findIndex(item => ['EXECUTED', 'FAILED'].includes(item.status));
-        if (oldest < 0) break;
-        sim.commands.splice(oldest, 1);
-      }
-      return command;
-    }
-    // Command delays use real seconds, independently of simulation speed or pause.
-    function processCommands(wallNow = performance.now()) {
-      for (const command of sim.commands) {
-        if (!['PENDING', 'RECEIVED'].includes(command.status)) continue;
-        const age = wallNow - command.issuedMono;
-        if (age >= cfg.commands.timeoutSec * 1000) {
-          transition(command, 'FAILED', 'timeout', wallNow);
-        } else if (isGatewayUp() && command.status === 'PENDING' && age >= command.receiveAfterMs) {
-          command.receivedMono = wallNow;
-          transition(command, 'RECEIVED', null, wallNow);
-        } else if (isGatewayUp() && command.status === 'RECEIVED' &&
-                   wallNow - command.receivedMono >= cfg.commands.executeDelaySec * 1000) {
-          enterManual();
-          const zone = findZone(command.zone);
-          zone.valveCmd = command.action === 'OPEN' ? 'open' : 'closed';
-          zone.autoCloseAt = command.action === 'OPEN' ? sim.now.getTime() + command.durationMin * 60000 : null;
-          hydraulics();
-          transition(command, zone.valveMeasured === zone.valveCmd ? 'EXECUTED' : 'FAILED',
-            zone.valveMeasured === zone.valveCmd ? null : 'stuckValve', wallNow);
-        }
-      }
-    }
-    // Pressure-compensating drippers hold rated flow above the regulator pressure.
-    // Solve P = P_shutoff - k Q² against total zone demand; Q_station is exactly ΣQ_zone.
-    function hydraulics() {
-      const demands = sim.zones.map(zone => {
-        zone.valveMeasured = zone.faults.has('stuckClosed') ? 'closed'
-          : zone.faults.has('stuckOpen') ? 'open' : zone.valveCmd;
-        return zone.valveMeasured === 'closed' ? 0 : zone.nominalFlowLpm *
-          (zone.faults.has('leak') ? 1.2 : 1) * (zone.faults.has('clog') ? 0.75 : 1);
-      });
-      const demand = demands.reduce((sum, flow) => sum + flow, 0);
-      let lower = 0, upper = cfg.hyd.pumpShutoffBar;
-      for (let iteration = 0; iteration < 32; iteration++) {
-        const pressure = (lower + upper) / 2;
-        const flow = demand * Math.min(1, Math.sqrt(pressure / cfg.hyd.regulatorBar));
-        if (cfg.hyd.pumpShutoffBar - pumpCoefficient * flow ** 2 > pressure) lower = pressure;
-        else upper = pressure;
-      }
-      const pressure = (lower + upper) / 2;
-      const factor = Math.min(1, Math.sqrt(pressure / cfg.hyd.regulatorBar));
-      sim.zones.forEach((zone, index) => { zone.flowLpm = Number((demands[index] * factor).toPrecision(12)); });
-      sim.station.flowLpm = sim.zones.reduce((sum, zone) => sum + zone.flowLpm, 0);
-      sim.station.pumpOn = sim.station.flowLpm > 0;
-      sim.station.pumpBar = sim.station.pumpOn ? round(pressure, 3) : 0;
-    }
+    function subscribe(listener) { listeners.add(listener); return () => listeners.delete(listener); }
     function step() {
-      const previousDay = sim.now.toDateString();
-      sim.now = new Date(sim.now.getTime() + 60000);
-      sim.steps++;
-      if (previousDay !== sim.now.toDateString()) sim.usedTodayL = 0;
-      const minute = sim.now.getHours() * 60 + sim.now.getMinutes();
-      const group = Math.floor((minute - startMinute) / cfg.sim.turnMin);
-      sim.zones.forEach((zone, index) => {
-        if (sim.mode === 'auto') zone.valveCmd = minute >= startMinute && minute < endMinute &&
-          Math.floor(index / cfg.sim.zonesPerTurn) === group ? 'open' : 'closed';
-        if (zone.autoCloseAt && sim.now.getTime() >= zone.autoCloseAt) {
-          zone.valveCmd = 'closed'; zone.autoCloseAt = null;
-        }
-      });
-      hydraulics();
-      sim.station.volL += sim.station.flowLpm;
-      sim.usedTodayL += sim.station.flowLpm;
-      const hour = sim.now.getHours() + sim.now.getMinutes() / 60;
-      // Daylight sine: 06:00–22:00, peak 14:00; integral equals the ET0 mm/day budget.
+      sim.now = new Date(sim.now.getTime() + 60000); sim.steps++;
+      const hour = sim.now.getHours() + sim.now.getMinutes() / 60, ts = sim.now.getTime();
       const daylight = hour >= 6 && hour <= 22 ? Math.sin(Math.PI * (hour - 6) / 16) : 0;
-      const etMm = cfg.sim.etMmDay * Math.PI / (2 * 16 * 60) * daylight;
+      const evaporationMm = cfg.sim.etMmDay * Math.PI / (2 * 16 * 60) * daylight;
       const readings = sim.zones.map((zone, index) => {
-        const irrigationMm = zone.flowLpm / zone.areaM2 / (cfg.soil.wetAreaPct / 100);
-        const evaporationMm = etMm * (zone.faults.has('dry') ? 8 : 1);
+        const drying = evaporationMm * (zone.faults.has('dry') ? 8 : 1) * 100 / cfg.soil.rootDepthMm;
         const drainage = Math.max(0, zone.moisture - cfg.soil.fieldCapacityPct) * cfg.soil.drainRate;
-        zone.moisture = Math.max(0, Math.min(100, zone.moisture +
-          (irrigationMm - evaporationMm) * 100 / cfg.soil.rootDepthMm - drainage));
-        zone.soilTempC = 20 + 5 * Math.sin(2 * Math.PI * (hour - 8) / 24);
+        const wetCondition = zone.faults.has('wet') ? Math.max(0, 85 - zone.moisture) * 0.025 : 0;
+        zone.moisture = clamp(zone.moisture + wetCondition - drying - drainage);
+        zone.soilTempC = 20 + 5 * Math.sin(2 * Math.PI * (hour - 8) / 24) + (zone.faults.has('dry') ? 4 : 0);
         zone.rssi = -59 - index + Math.round((rng() - 0.5) * 6);
-        const flowLpm = Number((zone.flowLpm * (1 + (rng() * 2 - 1) * cfg.sim.noisePct / 100)).toPrecision(8));
-        return { type: 'zone', node: zone.id, zone: zone.id, ts: sim.now.getTime(),
-          moisture: round(zone.moisture), flowLpm, valve: zone.valveMeasured,
-          commandedValve: zone.valveCmd, rssi: zone.rssi, soilTempC: round(zone.soilTempC),
-          pressureBar: sim.station.pumpBar };
+        return { type: 'zone', node: zone.id, zone: zone.id, ts, moisture: round(clamp(measure(zone.moisture))),
+          soilTempC: round(measure(zone.soilTempC)), rssi: zone.rssi };
       });
-      const ts = sim.now.getTime();
-      sim.msgs = isGatewayUp() ? [
-        { type: 'station', node: 'ST', ts, heartbeat: true,
-          flowLpm: Number(readings.reduce((sum, reading) => sum + reading.flowLpm, 0).toPrecision(8)),
-          pumpBar: sim.station.pumpBar, pumpOn: sim.station.pumpOn, mode: sim.mode,
-          usedTodayL: round(sim.usedTodayL), volL: round(sim.station.volL), rssi: -58 },
-        ...readings.filter(reading => !findZone(reading.zone).faults.has('sensorOffline'))
-      ] : [];
-      sim.msgs.forEach(publish);
+      sim.gateway.rssi = -58 + Math.round((rng() - 0.5) * 4);
+      sim.msgs = isGatewayUp() ? [{ type: 'gateway', node: 'GW', ts, heartbeat: true, rssi: sim.gateway.rssi },
+        ...readings.filter(reading => !findZone(reading.zone).faults.has('sensorOffline'))] : [];
+      sim.msgs.forEach(message => { const packet = Object.freeze(message); listeners.forEach(listener => listener(packet)); });
       return sim.msgs;
     }
-    const ZONE_FAULTS = ['leak', 'clog', 'stuckOpen', 'stuckClosed', 'sensorOffline', 'dry'];
-    function injectFault(type, target = 'ST') {
-      if (type === 'gatewayOffline') sim.station.faults.add(type);
-      else {
-        const zone = findZone(target);
-        if (!zone || !ZONE_FAULTS.includes(type)) throw new Error('invalidFault');
-        zone.faults.add(type);
-      }
-      hydraulics();
-    }
-    function clearFault(type, target = 'ST') {
-      if (type === 'gatewayOffline') sim.station.faults.delete(type);
-      else if (type === 'all') clearFaults(target);
-      else if (findZone(target) && ZONE_FAULTS.includes(type)) findZone(target).faults.delete(type);
-      else throw new Error('invalidFault');
-      hydraulics();
+    const ZONE_FAULTS = ['dry', 'wet', 'sensorOffline'];
+    function injectFault(type, target = 'GW') {
+      if (type === 'gatewayOffline') sim.gateway.faults.add(type);
+      else { const zone = findZone(target); if (!zone || !ZONE_FAULTS.includes(type)) throw new Error('invalidFault'); zone.faults.add(type); }
     }
     function clearFaults(target) {
-      if (!['all', 'ST'].includes(target) && !findZone(target)) throw new Error('invalidFault');
-      if (target === 'all' || target === 'ST') sim.station.faults.clear();
+      if (!['all', 'GW'].includes(target) && !findZone(target)) throw new Error('invalidFault');
+      if (target === 'all' || target === 'GW') sim.gateway.faults.clear();
       sim.zones.forEach(zone => { if (target === 'all' || zone.id === target) zone.faults.clear(); });
-      hydraulics();
     }
-    function setMode(mode) {
-      if (!['manual', 'auto'].includes(mode)) throw new Error('invalidCommand');
-      if (!isGatewayUp()) throw new Error('gatewayUnavailable');
-      sim.commands.filter(command => ['PENDING', 'RECEIVED'].includes(command.status))
-        .forEach(command => transition(command, 'FAILED', 'cancelled'));
-      if (mode === 'manual') enterManual();
-      else {
-        sim.mode = 'auto';
-        sim.zones.forEach(zone => { zone.valveCmd = 'closed'; zone.autoCloseAt = null; });
-        hydraulics();
-      }
+    function clearFault(type, target = 'GW') {
+      if (type === 'gatewayOffline') sim.gateway.faults.delete(type);
+      else if (type === 'all') clearFaults(target);
+      else { const zone = findZone(target); if (!zone || !ZONE_FAULTS.includes(type)) throw new Error('invalidFault'); zone.faults.delete(type); }
     }
-    return { sim, step, subscribe, sendCommand, processCommands, injectFault, clearFault,
-      clearFaults, isGatewayUp, enterManual, setMode, ZONE_FAULTS };
+    return { sim, step, subscribe, injectFault, clearFault, clearFaults, isGatewayUp, ZONE_FAULTS };
   }
   return { create };
 })();
 
 /* ============================= SemRules =============================
-   Independent diagnosis engine: learns per-zone flow baselines from
-   telemetry, then raises/clears alerts from readings and commands only. */
+   Independent diagnosis engine: learns soil references from telemetry
+   and diagnoses moisture conditions and missing sensor messages. */
 const SemRules = (() => {
 
   // No simulator reference: configuration, topology IDs, packets and a clock only.
   function create(cfg, zoneIds, startTs) {
     const limits = cfg.rules;
     const latest = {}, lastTs = {}, processed = {}, baselines = {}, counters = {};
-    const active = new Map(), commandStates = new Map();
+    const active = new Map(), knownZones = new Set(zoneIds);
     const log = [], events = [], statistics = { invalidPackets: 0, stalePackets: 0 };
     let now = startTs, lastEvaluation = startTs, sequence = 0, heartbeatSamples = 0;
-    const waterState = { day: '', usedL: 0, lostL: 0 };
-    zoneIds.forEach(id => { baselines[id] = { ready: false, moistureSamples: [], flowSamples: [], moisture: null, flow: null }; });
-    const alarmKey = (code, zone) => code + ':' + (zone || 'ST');
+    zoneIds.forEach(id => { baselines[id] = { ready: false, moistureSamples: [], temperatureSamples: [], moisture: null, temperature: null }; });
+    const alarmKey = (code, zone) => code + ':' + (zone || 'GW');
     const rounding = value => Number(value.toFixed(2));
     function summarize(values) {
       const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
@@ -2386,56 +1997,29 @@ const SemRules = (() => {
     function learn(message) {
       const baseline = baselines[message.zone];
       if (baseline.ready) return;
-      baseline.moistureSamples.push(message.moisture);
-      if (baseline.moistureSamples.length > limits.learnN) baseline.moistureSamples.shift();
-      if (message.valve === 'open' && message.commandedValve === 'open' && message.flowLpm > 0) {
-        baseline.flowSamples.push(message.flowLpm);
-        if (baseline.flowSamples.length > limits.learnN) baseline.flowSamples.shift();
-      }
-      if (baseline.moistureSamples.length === limits.learnN && baseline.flowSamples.length === limits.learnN) {
-        baseline.moisture = summarize(baseline.moistureSamples);
-        baseline.flow = summarize(baseline.flowSamples); baseline.ready = true;
+      baseline.moistureSamples.push(message.moisture); baseline.temperatureSamples.push(message.soilTempC);
+      if (baseline.moistureSamples.length >= limits.learnN) {
+        baseline.moisture = summarize(baseline.moistureSamples.slice(-limits.learnN));
+        baseline.temperature = summarize(baseline.temperatureSamples.slice(-limits.learnN)); baseline.ready = true;
       }
     }
     function ingest(input) {
       for (const message of Array.isArray(input) ? input : [input]) {
         if (!message || !Number.isFinite(message.ts) || message.ts < startTs) { statistics.invalidPackets++; continue; }
-        if (message.type === 'command') {
-          if (!baselines[message.zone] || !['PENDING', 'RECEIVED', 'EXECUTED', 'FAILED'].includes(message.state) ||
-              !Number.isFinite(message.elapsedMs) || !Number.isFinite(message.timeoutMs)) { statistics.invalidPackets++; continue; }
-          if (commandStates.get(message.commandId) === message.state) continue;
-          commandStates.set(message.commandId, message.state);
-          if (commandStates.size > 500) commandStates.delete(commandStates.keys().next().value);
-          now = Math.max(now, message.ts);
-          if (message.state === 'FAILED') raise('COMMAND_FAILED', message.zone, 'warning',
-            { v: rounding(message.elapsedMs / 1000), th: message.timeoutMs / 1000, commandId: message.commandId, reason: message.reason });
-          if (message.state === 'EXECUTED') clear('COMMAND_FAILED', message.zone);
-          continue;
-        }
-        const validZone = message.type === 'zone' && baselines[message.zone] && message.node === message.zone &&
-          Number.isFinite(message.moisture) && message.moisture >= 0 && message.moisture <= 100 &&
-          Number.isFinite(message.rssi) && ['open', 'closed'].includes(message.valve) &&
-          ['open', 'closed'].includes(message.commandedValve);
-        const validStation = message.type === 'station' && message.node === 'ST' && message.heartbeat === true &&
-          typeof message.pumpOn === 'boolean' && Number.isFinite(message.pumpBar) && Number.isFinite(message.usedTodayL);
-        if ((!validZone && !validStation) || !Number.isFinite(message.flowLpm) || message.flowLpm < 0) {
-          statistics.invalidPackets++; continue;
-        }
+        const validZone = message.type === 'zone' && knownZones.has(message.zone) && message.node === message.zone &&
+          Number.isFinite(message.moisture) && message.moisture >= 0 && message.moisture <= 100 && Number.isFinite(message.soilTempC) && Number.isFinite(message.rssi);
+        const validGateway = message.type === 'gateway' && message.node === 'GW' && message.heartbeat === true && Number.isFinite(message.rssi);
+        if (!validZone && !validGateway) { statistics.invalidPackets++; continue; }
         if (message.ts <= (lastTs[message.node] ?? -Infinity)) { statistics.stalePackets++; continue; }
         latest[message.node] = Object.freeze({ ...message }); lastTs[message.node] = message.ts;
         if (validZone) learn(message);
-        else {
-          heartbeatSamples++;
-          const day = new Date(message.ts).toDateString();
-          if (day !== waterState.day) { waterState.day = day; waterState.lostL = 0; }
-          waterState.usedL = message.usedTodayL;
-        }
+        else heartbeatSamples++;
       }
     }
     function evaluate(timestamp) {
       if (!Number.isFinite(timestamp) || timestamp <= lastEvaluation) return;
       now = timestamp; lastEvaluation = timestamp;
-      const silentSeconds = (now - (lastTs.ST ?? startTs)) / 1000;
+      const silentSeconds = (now - (lastTs.GW ?? startTs)) / 1000;
       if (silentSeconds >= limits.gatewayOfflineSec) raise('GATEWAY_OFFLINE', null, 'critical',
         { v: rounding(silentSeconds), th: limits.gatewayOfflineSec });
       else clear('GATEWAY_OFFLINE', null);
@@ -2461,42 +2045,21 @@ const SemRules = (() => {
         condition('MOISTURE_HIGH', zone, message.moisture > limits.moistureHighPct,
           message.moisture <= limits.moistureHighPct - limits.hysteresisPct,
           { ...moistureEvidence, th: limits.moistureHighPct });
-        const flow = message.flowLpm, reference = baseline.flow.mean;
-        const stuckThreshold = Math.min(limits.stuckFlowLpm, reference * 0.1);
-        const deltaPct = (flow / reference - 1) * 100;
-        const evidence = { v: flow, b: rounding(reference), p: rounding(deltaPct), deltaPct: rounding(deltaPct), std: rounding(baseline.flow.std) };
-        // Nominal +20%/-25% boundaries include measured 3σ / meter quantization uncertainty.
-        const tolerance = Math.min(reference * 0.0075, Math.max(0.025, baseline.flow.std * 3));
-        // Closed valves FREEZE leak/clog hits, clears, evidence and active state.
-        if (message.valve === 'open' && message.commandedValve === 'open' && flow > stuckThreshold) {
-          condition('LEAK', zone, flow >= reference * (1 + limits.highPct / 100) - tolerance,
-            flow < reference * (1 + (limits.highPct - limits.hysteresisPct) / 100),
-            { ...evidence, thresholdPct: limits.highPct, toleranceLpm: rounding(tolerance) }, 'critical');
-          condition('CLOG', zone, flow <= reference * (1 - limits.lowPct / 100) + tolerance,
-            flow > reference * (1 - (limits.lowPct - limits.hysteresisPct) / 100),
-            { ...evidence, p: rounding(-deltaPct), thresholdPct: limits.lowPct, toleranceLpm: rounding(tolerance) });
-        }
-        const stuckOpen = message.commandedValve === 'closed' && flow > stuckThreshold;
-        const stuckClosed = message.commandedValve === 'open' && flow <= stuckThreshold;
-        condition('STUCK_OPEN', zone, stuckOpen, !stuckOpen, { v: flow, th: stuckThreshold }, 'critical');
-        condition('STUCK_CLOSED', zone, stuckClosed, !stuckClosed, { v: flow, th: stuckThreshold }, 'critical');
-        if (active.has(alarmKey('STUCK_OPEN', zone)) && stuckOpen) waterState.lostL += flow;
-        else if (active.has(alarmKey('LEAK', zone)) && message.commandedValve === 'open') waterState.lostL += Math.max(0, flow - reference);
       }
     }
     function status(zone) {
       if (active.has(alarmKey('GATEWAY_OFFLINE', null))) return 'offline';
-      if (zone !== 'ST' && now - (lastTs[zone] ?? startTs) >= limits.offlineMin * 60000) return 'offline';
-      const alarms = [...active.values()].filter(alarm => !alarm.suppressed && (alarm.zone || 'ST') === zone);
+      if (zone !== 'GW' && now - (lastTs[zone] ?? startTs) >= limits.offlineMin * 60000) return 'offline';
+      const alarms = [...active.values()].filter(alarm => !alarm.suppressed && (alarm.zone || 'GW') === zone);
       if (alarms.some(alarm => alarm.severity === 'critical')) return 'critical';
       if (alarms.length) return 'warning';
-      return zone === 'ST' || baselines[zone]?.ready ? 'ok' : 'learning';
+      return zone === 'GW' || baselines[zone]?.ready ? 'ok' : 'learning';
     }
     const ack = id => {
       const alarm = [...active.values()].find(item => item.id === id) || log.find(item => item.id === id);
       if (alarm) alarm.ack = true;
     };
-    return { ingest, evaluate, status, ack, water: () => ({ ...waterState }),
+    return { ingest, evaluate, status, ack,
       get alerts() { return [...active.values()].filter(alarm => !alarm.suppressed); },
       get log() { return log; }, get events() { return events; }, get baselines() { return baselines; },
       get latest() { return latest; }, get lastTs() { return lastTs; }, get statistics() { return statistics; } };
@@ -2604,55 +2167,41 @@ const SemChart = (() => {
    Startup, actions, history and the simulation/render loop (~4 fps). */
 const SemApp = (() => {
   const FIELD_LABELS = {
-    'farm.id': ['معرّف المزرعة والجهاز', 'Farm and device ID'],
-    'farm.nameAr': ['اسم المزرعة (عربي)', 'Farm name (Arabic)'],
-    'farm.nameEn': ['اسم المزرعة (إنجليزي)', 'Farm name (English)'],
-    'farm.lat': ['خط العرض', 'Latitude'], 'farm.lng': ['خط الطول', 'Longitude'],
-    'farm.zoom': ['مستوى التكبير', 'Zoom level'],
-    'farm.width': ['العرض (م)', 'Width (m)'], 'farm.height': ['الطول (م)', 'Height (m)'],
-    'farm.rotation': ['الدوران (درجة)', 'Rotation (°)'],
-    'farm.rows': ['صفوف المناطق', 'Zone rows'], 'farm.cols': ['أعمدة المناطق', 'Zone columns'],
-    'farm.drawnLines': ['خطوط التنقيط المرئية', 'Drawn drip lines'],
-    'hyd.emitterLph': ['تدفق النقاط (ل/س)', 'Emitter flow (L/h)'],
-    'hyd.emittersPerZone': ['نقاطات لكل منطقة', 'Emitters per zone'],
-    'hyd.pumpShutoffBar': ['ضغط الإغلاق (بار)', 'Pump shutoff (bar)'],
-    'hyd.pumpDesignBar': ['ضغط التشغيل (بار)', 'Pump design (bar)'],
-    'hyd.regulatorBar': ['ضغط تنظيم النقاطات', 'Dripper regulation pressure'],
-    'soil.rootDepthMm': ['عمق منطقة الجذور', 'Root-zone depth'],
-    'soil.wetAreaPct': ['نسبة المساحة المبللة', 'Wetted area fraction'],
-    'soil.fieldCapacityPct': ['السعة الحقلية', 'Field capacity'],
-    'soil.drainRate': ['معامل الصرف', 'Drainage coefficient'],
-    'rules.moistureLowPct': ['عتبة الرطوبة المنخفضة (%)', 'Low-moisture threshold (%)'],
-    'rules.moistureHighPct': ['حد الرطوبة المرتفعة (%)', 'High-moisture limit (%)'],
-    'rules.highPct': ['زيادة التدفق → تسريب (%)', 'Flow rise → leak (%)'],
-    'rules.lowPct': ['انخفاض التدفق → انسداد (%)', 'Flow drop → clog (%)'],
-    'rules.persist': ['قراءات متتالية للتثبيت', 'Evaluations to confirm'],
-    'rules.offlineMin': ['مهلة صمت الحساس (دقيقة)', 'Sensor silence timeout (min)'],
-    'rules.gatewayOfflineSec': ['مهلة صمت البوابة (ثانية)', 'Gateway silence timeout (s)'],
-    'rules.learnN': ['قراءات لتعلم المرجع', 'Readings to learn baseline'],
-    'rules.stuckFlowLpm': ['حد التدفق لكشف الصمام العالق', 'Stuck-valve flow threshold'],
-    'rules.hysteresisPct': ['هامش زوال الإنذار', 'Alarm clearing hysteresis'],
-    'sim.speed': ['السرعة الابتدائية', 'Initial speed'],
-    'sim.noisePct': ['ضوضاء القياس (%)', 'Measurement noise (%)'],
-    'sim.startTime': ['وقت بدء الري (HH:MM)', 'Watering start (HH:MM)'],
-    'sim.endTime': ['وقت انتهاء الري (HH:MM)', 'Watering end (HH:MM)'],
-    'sim.zonesPerTurn': ['مناطق في كل دفعة', 'Zones per turn'],
-    'sim.turnMin': ['مدة الدفعة (دقيقة)', 'Turn duration (min)'],
-    'sim.etMmDay': ['التبخر اليومي (مم/يوم)', 'Daily evaporation (mm/day)'],
-    'sim.seed': ['بذرة العشوائية', 'Random seed'],
-    'commands.receiveMinSec': ['أقل تأخير للاستلام', 'Minimum receive delay'],
-    'commands.receiveMaxSec': ['أقصى تأخير للاستلام', 'Maximum receive delay'],
-    'commands.executeDelaySec': ['تأخير تنفيذ الأمر', 'Execution delay'],
-    'commands.timeoutSec': ['المهلة الحقيقية للأمر', 'Real-time command timeout'],
-    'commands.defaultMin': ['مدة الري اليدوي الافتراضية', 'Default manual duration'],
-    'ui.lang': ['لغة الواجهة', 'Interface language'], 'ui.theme': ['المظهر', 'Theme']
+    "farm.id": ["معرّف المزرعة والجهاز", "Farm and device ID"],
+    "farm.nameAr": ["اسم المزرعة (عربي)", "Farm name (Arabic)"],
+    "farm.nameEn": ["اسم المزرعة (إنجليزي)", "Farm name (English)"],
+    "farm.lat": ["خط العرض", "Latitude"],
+    "farm.lng": ["خط الطول", "Longitude"],
+    "farm.zoom": ["مستوى التكبير", "Zoom level"],
+    "farm.width": ["العرض (م)", "Width (m)"],
+    "farm.height": ["الطول (م)", "Height (m)"],
+    "farm.rotation": ["الدوران (درجة)", "Rotation (°)"],
+    "farm.rows": ["صفوف المناطق", "Zone rows"],
+    "farm.cols": ["أعمدة المناطق", "Zone columns"],
+    "soil.rootDepthMm": ["عمق منطقة الجذور", "Root-zone depth"],
+    "soil.fieldCapacityPct": ["السعة الحقلية", "Field capacity"],
+    "soil.drainRate": ["معامل الصرف", "Drainage coefficient"],
+    "rules.moistureLowPct": ["عتبة الرطوبة المنخفضة (%)", "Low-moisture threshold (%)"],
+    "rules.moistureHighPct": ["حد الرطوبة المرتفعة (%)", "High-moisture limit (%)"],
+    "rules.persist": ["قراءات متتالية للتثبيت", "Evaluations to confirm"],
+    "rules.offlineMin": ["مهلة صمت الحساس (دقيقة)", "Sensor silence timeout (min)"],
+    "rules.gatewayOfflineSec": ["مهلة صمت البوابة (ثانية)", "Gateway silence timeout (s)"],
+    "rules.learnN": ["قراءات لتعلم المرجع", "Readings to learn baseline"],
+    "rules.hysteresisPct": ["هامش زوال الإنذار", "Alarm clearing hysteresis"],
+    "sim.speed": ["السرعة الابتدائية", "Initial speed"],
+    "sim.noisePct": ["ضوضاء القياس (%)", "Measurement noise (%)"],
+    "sim.startTime": ["وقت بدء المحاكاة (ساعة:دقيقة)", "Playback start (HH:MM)"],
+    "sim.etMmDay": ["التبخر اليومي (مم/يوم)", "Daily evaporation (mm/day)"],
+    "sim.seed": ["بذرة العشوائية", "Random seed"],
+    "ui.lang": ["لغة الواجهة", "Interface language"],
+    "ui.theme": ["المظهر", "Theme"],
   };
   SemI18n.register(Object.fromEntries(Object.entries(FIELD_LABELS).map(([key, labels]) => ['field.' + key, labels])));
 
   const A = { cfg: null, farm: null, simApi: null, eng: null,
     map: null, view: null, hist: null,
     selected: 'Z1', drawerTarget: null, timer: null, frac: 0,
-    speed: 300, paused: false, irrMinutes: 60, ready: false,
+    speed: 300, paused: false, ready: false,
     settingsDraft: null, settingsWasPaused: false, focusBeforeSettings: null,
     lastClock: 0, chartSignature: '', drawerSignature: '', landEdit: null };
 
@@ -2663,21 +2212,19 @@ const SemApp = (() => {
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
   const setHTML = (id, html) => { const element = $(id); if (element.innerHTML !== html) element.innerHTML = html; };
   const valueUnit = (value, unit, digits = 1) => Number.isFinite(value)
-    ? '<bdi dir="ltr">' + (unit === 'lpm' && value > 0 && value < 1 ? value.toPrecision(3) : value.toFixed(digits)) + ' ' + esc(t('unit.' + unit)) + '</bdi>' : '—';
+    ? '<bdi dir="ltr">' + value.toFixed(digits) + ' ' + esc(t('unit.' + unit)) + '</bdi>' : '—';
 
   function arrangePanels() {
     const brandLogoSource = $('brandLogoAsset').getAttribute('src');
     document.querySelectorAll('img[data-brand-logo]').forEach(image => { image.src = brandLogoSource; });
-    $('brandFavicon').href = brandLogoSource;
+    $('brandFavicon').type = 'image/jpeg'; $('brandFavicon').href = brandLogoSource;
     const mapColumn = document.querySelector('.layout > div');
     const sidebar = document.querySelector('.layout > aside');
     const charts = document.querySelector('.charts');
     mapColumn.append($('zoneList').closest('.card'));
     $('alarmPanel').append($('alertList').closest('.card'));
-    $('commandPanel').append($('cmdList').closest('.card'));
     sidebar.append($('drawer'), charts);
     document.querySelector('.appfoot .mono').textContent = 'SEMICO · USTHB';
-    $('modeChip').setAttribute('role', 'button'); $('modeChip').tabIndex = 0;
     $('loading').setAttribute('role', 'status');
   }
 
@@ -2698,7 +2245,7 @@ const SemApp = (() => {
     document.querySelectorAll('[data-i18n]').forEach(element => { element.textContent = t(element.dataset.i18n); });
     document.querySelectorAll('[data-i18n-alt]').forEach(element => { element.alt = t(element.dataset.i18nAlt); });
     Object.entries({ brandTag: 'brand.tag', mapTitle: 'map.title', mapSub: 'map.sub',
-      zonesTitle: 'zones.title', zonesSub: 'zones.sub', cmdTitle: 'cmd.title', cmdSub: 'cmd.sub',
+      zonesTitle: 'zones.title', zonesSub: 'zones.sub',
       alertsTitle: 'alerts.title', btnRepairAll: 'alert.repairAll', chartMoistTitle: 'chart.moist',
       settingsTitle: 'settings.title', settingsHint: 'settings.hint', btnSave: 'settings.save',
       btnExport: 'settings.export', btnImport: 'settings.import', btnReset: 'settings.reset',
@@ -2706,8 +2253,8 @@ const SemApp = (() => {
     }).forEach(([id, key]) => { $(id).textContent = t(key); });
     $('farmName').textContent = farmName();
     $('chartMoistSub').textContent = t('chart.threshold') + ' ' + A.cfg.rules.moistureLowPct + '%';
-    $('chartFlowTitle').textContent = t(A.drawerTarget === 'ST' ? 'chart.flow' : 'chart.zoneFlow');
-    $('chartFlowSub').textContent = t('chart.flow.sub');
+    $('chartTempTitle').textContent = t('chart.temperature');
+    $('chartTempSub').textContent = t('unit.celsius');
     Object.entries({ btnSettings: 'settings.title', btnAlerts: 'alerts.title', drawerClose: 'common.close',
       btnPause: A.paused ? 'resume' : 'pause', btnTheme: A.cfg.ui.theme === 'light' ? 'theme.dark' : 'theme.light',
       btnLang: SemI18n.getLang() === 'ar' ? 'language.en' : 'language.ar', selSpeed: 'playback.speed'
@@ -2721,7 +2268,6 @@ const SemApp = (() => {
     $('editLand').textContent = t(A.farm?.custom ? 'land.edit' : 'land.define');
     if (A.farm) $('landSummary').textContent = t(A.farm.custom ? 'land.custom' : 'land.rectangular') + ' · ' + fmt('land.area', { area: A.farm.areaM2.toFixed(1) });
     if (A.landEdit) refreshBoundaryEditor();
-    renderModeChip();
     renderLegend();
     if (A.drawerTarget) openDrawer(A.drawerTarget);
     else { $('drawerTitle').textContent = t('drawer.zone'); $('drawerBody').textContent = t('map.sub'); }
@@ -2734,15 +2280,6 @@ const SemApp = (() => {
       '<span class="li"><span class="sw" style="background:' + colors[k] + '"></span>' + t('legend.' + k) + '</span>').join('');
   }
 
-  function renderModeChip() {
-    const chip = $('modeChip');
-    const auto = A.simApi && A.simApi.sim.mode === 'auto';
-    chip.className = 'chip' + (auto ? '' : ' warn');
-    $('modeTxt').textContent = auto ? t('mode.auto') : t('mode.manual');
-    chip.title = auto ? t('mode.auto.tip') : t('mode.manual.tip');
-  }
-
-  /* ---------------- map ---------------- */
   function moistureColor(m) {
     if (m === null || m === undefined) return '#94A3B8';
     if (m >= 45) return '#0077B6';
@@ -2775,35 +2312,15 @@ const SemApp = (() => {
       return '<button type="button" class="zrow' + (A.drawerTarget === zone.id ? ' sel' : '') + '" data-zone="' + zone.id + '">' +
         '<span class="sdot ' + statusDot(status) + '"></span><span class="zname">' + t('drawer.zone') + ' ' + zone.id.slice(1) + '</span>' +
         '<span class="zval">' + (online ? valueUnit(packet.moisture, 'percent', 0) : '—') + '</span>' +
-        '<span class="zmeta"><span class="tag">' + (online ? t('valve.' + packet.valve) : t('valve.unknown')) +
+        '<span class="zmeta"><span class="tag">' + valueUnit(zone.areaM2, 'm2', 0) +
         '</span><span class="tag">' + t('status.' + status) + '</span></span></button>';
     }).join(''));
     $('zoneList').querySelectorAll('[data-zone]').forEach(button => { button.onclick = () => openDrawer(button.dataset.zone); });
   }
 
-  function renderCommands() {
-    const commands = A.simApi.sim.commands.slice().reverse();
-    const entries = commands.map(command => '<article class="command-entry" data-command="' + command.id + '">' +
-      '<div class="command-head"><b>' + esc(command.id) + ' · ' + t('drawer.zone') + ' ' + command.zone.slice(1) + '</b>' +
-      '<time>' + SemI18n.fmtDT(new Date(command.wallTs)) + '</time><span class="tag ' + command.status.toLowerCase() + '">' +
-      t('cmd.' + command.status.toLowerCase()) + '</span></div><small>' + t('cmd.topic') + '</small>' +
-      '<code class="command-topic">' + esc(command.topic) + '</code><small>' + t('cmd.payload') + '</small>' +
-      '<code class="command-payload">' + esc(JSON.stringify(command.payload)) + '</code>' +
-      '<div class="transitions" aria-label="' + esc(t('cmd.transitions')) + '">' + command.transitions.map(transition =>
-        '<span data-state="' + transition.state + '"><bdi class="mono">' + transition.state + '</bdi> · ' +
-        t('cmd.' + transition.state.toLowerCase()) + '<br>' + valueUnit(transition.elapsedMs / 1000, 'second', 2) + '</span>').join('') +
-      '</div>' + (command.reason ? '<p class="hint">' + t('reason.' + command.reason) + '</p>' : '') + '</article>').join('');
-    setHTML('cmdList', '<p class="hint">' + t('cmd.clockHint') + '</p>' +
-      (entries || '<div class="empty">' + t('cmd.empty') + '</div>'));
-  }
-
-  function alertMsg(a) {
-    const ev = a.evidence || {};
-    const p = {
-      v: ev.v !== undefined ? ev.v : '—', th: ev.th !== undefined ? ev.th : '—',
-      node: ev.node || '—', p: ev.p !== undefined ? ev.p : '—', b: ev.b !== undefined ? ev.b : '—'
-    };
-    return fmt('msg.' + a.code, p) + (ev.reason ? ' ' + t('reason.' + ev.reason) : '');
+  function alertMsg(alarm) {
+    const evidence = alarm.evidence || {};
+    return fmt('msg.' + alarm.code, { v: evidence.v ?? '—', th: evidence.th ?? '—', node: evidence.node || '—' });
   }
 
   function renderAlerts() {
@@ -2830,18 +2347,18 @@ const SemApp = (() => {
     for (const a of active) {
       html += '<div class="arow ' + (a.severity === 'critical' ? 'crit' : 'warn') + '" data-alarm="' + a.id + '" data-code="' + a.code + '">' +
         '<div class="ahead"><span class="acode">' + t('alert.' + a.code) + '</span>' +
-        '<span class="azone">' + (a.zone ? t('alert.zone') + ' ' + a.zone.slice(1) : t('alert.station')) + '</span>' +
+        '<span class="azone">' + (a.zone ? t('alert.zone') + ' ' + a.zone.slice(1) : t('alert.gateway')) + '</span>' +
         '<span class="atime mono">' + SemI18n.fmtTime(new Date(a.raisedAt)) + '</span></div>' +
         '<div class="amsg">' + esc(alertMsg(a)) + '</div>' +
         '<span class="tag">' + t('status.' + a.severity) + ' · ' + t('common.active') + '</span>' +
         '<div class="aact">' +
         (a.ack ? '' : '<button class="minibtn" data-ack="' + a.id + '">' + t('alert.ack') + '</button>') +
-        '<button class="minibtn ok" data-repair="' + (a.zone || 'ST') + '">' + t('alert.repair') + '</button></div></div>';
+        '<button class="minibtn ok" data-repair="' + (a.zone || 'GW') + '">' + t('alert.repair') + '</button></div></div>';
     }
     for (const a of resolved) {
       html += '<div class="arow resolved"><div class="ahead">' +
         '<span class="acode">' + t('alert.' + a.code) + '</span>' +
-        '<span class="azone">' + (a.zone ? t('alert.zone') + ' ' + a.zone.slice(1) : t('alert.station')) + '</span>' +
+        '<span class="azone">' + (a.zone ? t('alert.zone') + ' ' + a.zone.slice(1) : t('alert.gateway')) + '</span>' +
         '<span class="atime">✓ ' + t('common.cleared') + ' ' + SemI18n.fmtDT(new Date(a.clearedAt)) + '</span></div>' +
         '<div class="amsg">' + esc(alertMsg(a)) + '</div></div>';
     }
@@ -2861,119 +2378,82 @@ const SemApp = (() => {
     const average = areaAverage(zone => A.eng.status(zone.id) === 'offline' ? null : A.eng.latest[zone.id]?.moisture);
     $('headerMoisture').textContent = average === null ? '—' : average.toFixed(1) + ' ' + t('unit.percent');
     $('headerMoisture').style.color = moistureColor(average);
-    $('headerIrrigating').textContent = readings.length ? readings.filter(packet => packet.valve === 'open').length + ' / ' + A.farm.nZones : '—';
-    const station = A.eng.latest.ST;
-    $('headerPump').textContent = A.eng.status('ST') === 'offline' || !station ? t('status.offline') : t(station.pumpOn ? 'pump.on' : 'pump.off');
-    $('headerPump').style.fontSize = '14px';
-  }
-
-  function fmtL(v) {
-    if (v >= 1000) return (v / 1000).toFixed(1) + ' ' + t('unit.m3');
-    return Math.round(v) + ' ' + t('unit.litre');
+    $('headerSensors').textContent = readings.length + ' / ' + A.farm.nZones;
+    const connected = A.eng.latest.GW && A.eng.status('GW') !== 'offline';
+    $('headerGateway').textContent = t(connected ? 'gateway.online' : 'gateway.offline');
+    $('headerGateway').style.fontSize = '14px';
   }
 
   function renderCharts() {
     const now = A.simApi.sim.now.getTime(), selected = A.selected, hist = A.hist;
-    const signature = [now, A.drawerTarget, SemI18n.getLang(), A.cfg.ui.theme, $('chartMoist').clientWidth].join(':');
+    const signature = [now, selected, SemI18n.getLang(), A.cfg.ui.theme, $('chartMoist').clientWidth].join(':');
     if (signature === A.chartSignature || (A.chartSignature && document.querySelector('.chartbox:hover'))) return;
     A.chartSignature = signature;
-    const average = hist.times.map((timestamp, index) => [timestamp, areaAverage(zone => hist.moist[zone.id][index])]);
     const zoneName = t('chart.zone') + ' ' + selected.slice(1);
-    SemChart.render($('moistSvg'), $('moistTip'), {
-      now, yMin: 0, yMax: 100, title: t('chart.moist'), unit: t('unit.percent'),
-      series: [
-        { name: t('chart.legend.avg'), color: '#00A859', data: average },
-        { name: zoneName, color: '#0077B6', data: hist.times.map((timestamp, index) => [timestamp, hist.moist[selected][index]]) }
-      ],
-      thresholds: [{ v: A.cfg.rules.moistureLowPct, color: '#E11D48' }, { v: A.cfg.rules.moistureHighPct, color: '#FF6B35' }],
-      fmtY: value => Math.round(value) + '%'
-    });
-    SemChart.attachHover($('moistSvg'), $('moistTip'));
-    const stationSelected = A.drawerTarget === 'ST';
-    const baseline = A.eng.baselines[selected];
-    const flowTitle = t(stationSelected ? 'chart.flow' : 'chart.zoneFlow');
-    $('chartFlowTitle').textContent = flowTitle;
-    SemChart.render($('flowSvg'), $('flowTip'), {
-      now, yMin: 0, title: flowTitle, unit: t('unit.lpm'),
-      series: [{ name: t(stationSelected ? 'chart.legend.flow' : 'chart.legend.zoneFlow'), color: '#0077B6',
-        data: stationSelected ? hist.flow : hist.times.map((timestamp, index) => [timestamp, hist.zoneFlow[selected][index]]) }],
-      thresholds: !stationSelected && baseline.ready ? [{ v: baseline.flow.mean, color: '#FF6B35' }] : [],
-      fmtY: value => Math.abs(value) < 1 ? value.toFixed(2) : Math.round(value)
-    });
-    SemChart.attachHover($('flowSvg'), $('flowTip'));
-    setHTML('moistLegend',
-      '<span class="li"><span class="ln" style="background:#00A859"></span>' + t('chart.legend.avg') + '</span>' +
-      '<span class="li"><span class="ln" style="background:#0077B6"></span>' + zoneName + '</span>');
-    setHTML('flowLegend', '<span class="li"><span class="ln" style="background:#0077B6"></span>' +
-      t(stationSelected ? 'chart.legend.flow' : 'chart.legend.zoneFlow') + '</span>' + (!stationSelected ?
-        '<span class="li"><span class="ln" style="background:#FF6B35"></span>' + t('drawer.baseline') + '</span>' : ''));
+    for (const chart of [
+      { key: 'moist', prefix: 'moist', title: 'chart.moist', unit: 'percent', min: 0, max: 100, color: '#0077B6' },
+      { key: 'temperature', prefix: 'temp', title: 'chart.temperature', unit: 'celsius', min: 0, max: 40, color: '#FF6B35' }
+    ]) {
+      const average = hist.times.map((timestamp, index) => [timestamp, areaAverage(zone => hist[chart.key][zone.id][index])]);
+      SemChart.render($(chart.prefix + 'Svg'), $(chart.prefix + 'Tip'), {
+        now, yMin: chart.min, yMax: chart.max, title: t(chart.title), unit: t('unit.' + chart.unit),
+        series: [{ name: t('chart.legend.avg'), color: '#00A859', data: average },
+          { name: zoneName, color: chart.color, data: hist.times.map((timestamp, index) => [timestamp, hist[chart.key][selected][index]]) }],
+        thresholds: chart.key === 'moist' ? [{ v: A.cfg.rules.moistureLowPct, color: '#E11D48' }, { v: A.cfg.rules.moistureHighPct, color: '#FF6B35' }] : [],
+        fmtY: value => Math.round(value) + (chart.key === 'moist' ? '%' : '°')
+      });
+      SemChart.attachHover($(chart.prefix + 'Svg'), $(chart.prefix + 'Tip'));
+      setHTML(chart.prefix + 'Legend', '<span class="li"><span class="ln" style="background:#00A859"></span>' + t('chart.legend.avg') + '</span>' +
+        '<span class="li"><span class="ln" style="background:' + chart.color + '"></span>' + zoneName + '</span>');
+    }
   }
 
   /* ---------------- drawer ---------------- */
   function openDrawer(target) {
-    if (target !== 'ST' && !A.farm.zones.some(zone => zone.id === target)) return;
+    if (target !== 'GW' && !A.farm.zones.some(zone => zone.id === target)) return;
     if (A.drawerTarget !== target) A.chartSignature = '';
     A.drawerTarget = target;
-    if (target !== 'ST') A.selected = target;
-    const body = $('drawerBody'), station = target === 'ST';
-    const signature = target + ':' + SemI18n.getLang();
+    if (target !== 'GW') A.selected = target;
+    const body = $('drawerBody'), gateway = target === 'GW', signature = target + ':' + SemI18n.getLang();
     $('drawer').classList.add('open');
-    $('drawerTitle').textContent = t(station ? 'drawer.station' : 'drawer.zone') + (station ? '' : ' ' + target.slice(1));
+    $('drawerTitle').textContent = t(gateway ? 'drawer.gateway' : 'drawer.zone') + (gateway ? '' : ' ' + target.slice(1));
     if (signature !== A.drawerSignature) {
       A.drawerSignature = signature;
-      const fields = station ? [['drawer.flow', 'flow'], ['drawer.pressure', 'pressure'], ['kpi.pump', 'pump'],
-        ['kpi.used', 'used'], ['kpi.lost', 'lost'], ['drawer.lastMsg', 'last']]
-        : [['land.zoneArea', 'area'], ['drawer.moisture', 'moisture'], ['drawer.flow', 'flow'], ['drawer.valveState', 'valve'],
-          ['drawer.expected', 'command'], ['drawer.signal', 'signal'], ['drawer.lastMsg', 'last']];
+      const fields = gateway ? [['drawer.signal', 'signal'], ['drawer.lastMsg', 'last'], ['kpi.reporting', 'reporting'], ['land.totalArea', 'area']]
+        : [['land.zoneArea', 'area'], ['drawer.moisture', 'moisture'], ['drawer.soilTemp', 'temperature'], ['drawer.signal', 'signal'], ['drawer.lastMsg', 'last']];
       body.innerHTML = '<div><span class="tag" data-metric="status"></span></div><div class="dgrid">' +
-        fields.map(([label, metric]) => '<div class="dstat"><div class="l">' + t(label) +
-          '</div><div class="v" data-metric="' + metric + '">—</div></div>').join('') + '</div>' +
-        (station ? '' : '<div class="dstat"><div class="l">' + t('drawer.baseline') + ' · ' + t('drawer.meanStd') +
-          '</div><div data-metric="baseline"></div></div><div class="irr">' +
-          '<button type="button" class="stepbtn" data-dur="-5" aria-label="−5 ' + esc(t('unit.minute')) + '">−</button>' +
-          '<span class="durval" data-metric="duration"></span><button type="button" class="stepbtn" data-dur="5" aria-label="+5 ' + esc(t('unit.minute')) + '">+</button>' +
-          '<button type="button" class="btn-primary" data-command-action="OPEN">' + t('cmd.irrigate') + '</button>' +
-          '<button type="button" class="btn-outline" data-command-action="CLOSE">' + t('cmd.closeNow') + '</button></div>') +
+        fields.map(([label, metric]) => '<div class="dstat"><div class="l">' + t(label) + '</div><div class="v" data-metric="' + metric + '">—</div></div>').join('') + '</div>' +
+        (gateway ? '' : '<div class="dstat"><div class="l">' + t('drawer.baseline') + ' · ' + t('drawer.meanStd') + '</div><div data-metric="baseline"></div></div>') +
         '<div class="sect">' + t('drawer.inject') + '</div><div class="injgrid">' +
-        (station ? ['gatewayOffline'] : A.simApi.ZONE_FAULTS).map(type =>
-          '<button type="button" class="injbtn" data-inj="' + type + '" aria-pressed="false"></button>').join('') +
-        '</div><button type="button" class="btn-outline" data-clear="' + target + '">' + t('inject.clear') + '</button>' +
-        '<div class="hint">' + t('fault.hint') + '</div>';
+        (gateway ? ['gatewayOffline'] : A.simApi.ZONE_FAULTS).map(type => '<button type="button" class="injbtn" data-inj="' + type + '" aria-pressed="false"></button>').join('') +
+        '</div><button type="button" class="btn-outline" data-clear="' + target + '">' + t('inject.clear') + '</button><div class="hint">' + t('fault.hint') + '</div>';
       body.onclick = event => {
         const button = event.target.closest('button'); if (!button) return;
         if (button.dataset.inj) {
-          const faults = station ? A.simApi.sim.station.faults : A.simApi.sim.zones.find(zone => zone.id === target).faults;
-          if (faults.has(button.dataset.inj)) actions.clearFault(button.dataset.inj, target);
-          else actions.injectFault(button.dataset.inj, target);
+          const faults = gateway ? A.simApi.sim.gateway.faults : A.simApi.sim.zones.find(zone => zone.id === target).faults;
+          if (faults.has(button.dataset.inj)) actions.clearFault(button.dataset.inj, target); else actions.injectFault(button.dataset.inj, target);
         }
         if (button.dataset.clear) actions.repair(target);
-        if (button.dataset.dur) { A.irrMinutes = Math.max(5, Math.min(240, A.irrMinutes + Number(button.dataset.dur))); openDrawer(target); }
-        if (button.dataset.commandAction) actions.sendValveCmd(target, button.dataset.commandAction, A.irrMinutes);
       };
     }
     const packet = A.eng.latest[target], online = packet && A.eng.status(target) !== 'offline';
     const metric = (name, html) => { const node = body.querySelector('[data-metric="' + name + '"]'); if (node && node.innerHTML !== html) node.innerHTML = html; };
     metric('status', t('status.' + A.eng.status(target)));
-    metric('flow', valueUnit(online ? packet.flowLpm : NaN, 'lpm'));
     metric('last', packet ? '<bdi>' + SemI18n.fmtDT(new Date(packet.ts)) + '</bdi>' : '—');
-    if (station) {
-      metric('pressure', valueUnit(online ? packet.pumpBar : NaN, 'bar', 2));
-      metric('pump', online ? t(packet.pumpOn ? 'pump.on' : 'pump.off') : t('common.noData'));
-      metric('used', online ? esc(fmtL(A.eng.water().usedL)) : '—');
-      metric('lost', online ? esc(fmtL(A.eng.water().lostL)) : '—');
+    metric('signal', valueUnit(online ? packet.rssi : NaN, 'dbm', 0));
+    if (gateway) {
+      metric('reporting', A.farm.zones.filter(zone => A.eng.status(zone.id) !== 'offline' && A.eng.latest[zone.id]).length + ' / ' + A.farm.nZones);
+      metric('area', valueUnit(A.farm.areaM2, 'm2', 1));
     } else {
       metric('area', valueUnit(A.farm.zones.find(zone => zone.id === target).areaM2, 'm2', 1));
       metric('moisture', valueUnit(online ? packet.moisture : NaN, 'percent'));
-      metric('valve', online ? t('valve.' + packet.valve) : t('valve.unknown'));
-      metric('command', online ? t('valve.' + packet.commandedValve) : t('valve.unknown'));
-      metric('signal', valueUnit(online ? packet.rssi : NaN, 'dbm', 0));
-      metric('duration', valueUnit(A.irrMinutes, 'minute', 0));
+      metric('temperature', valueUnit(online ? packet.soilTempC : NaN, 'celsius'));
       const baseline = A.eng.baselines[target];
-      metric('baseline', baseline.ready ? '<bdi>μ ' + baseline.flow.mean.toFixed(2) + ' ± ' + baseline.flow.std.toFixed(2) + ' ' +
-        t('unit.lpm') + '</bdi><br><bdi>μ ' + baseline.moisture.mean.toFixed(2) + ' ± ' + baseline.moisture.std.toFixed(2) + ' ' +
-        t('unit.percent') + '</bdi> · ' + baseline.flow.n + ' ' + t('unit.samples') : t('status.learning'));
+      metric('baseline', baseline.ready ? '<bdi>μ ' + baseline.moisture.mean.toFixed(2) + ' ± ' + baseline.moisture.std.toFixed(2) + ' ' + t('unit.percent') +
+        '</bdi><br><bdi>μ ' + baseline.temperature.mean.toFixed(2) + ' ± ' + baseline.temperature.std.toFixed(2) + ' ' + t('unit.celsius') +
+        '</bdi> · ' + baseline.moisture.n + ' ' + t('unit.samples') : t('status.learning'));
     }
-    const faults = station ? A.simApi.sim.station.faults : A.simApi.sim.zones.find(zone => zone.id === target).faults;
+    const faults = gateway ? A.simApi.sim.gateway.faults : A.simApi.sim.zones.find(zone => zone.id === target).faults;
     body.querySelectorAll('[data-inj]').forEach(button => {
       const active = faults.has(button.dataset.inj);
       button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active));
@@ -3056,7 +2536,6 @@ const SemApp = (() => {
     $('boundaryEditor').hidden = false;
     ['drawer', 'zoneList'].forEach(id => $(id).setAttribute('inert', ''));
     ['btnPause', 'selSpeed', 'editLand'].forEach(id => { $(id).disabled = true; });
-    $('modeChip').setAttribute('aria-disabled', 'true');
     renderI18n(); refreshBoundaryEditor(true);
     $('boundaryEditor').scrollIntoView({ block: 'start' }); map.invalidateSize(false);
   }
@@ -3066,7 +2545,7 @@ const SemApp = (() => {
     if (edit.doubleClickZoom) A.map.doubleClickZoom.enable();
     $('map').classList.remove('is-boundary-editing'); document.body.classList.remove('boundary-editing'); $('boundaryEditor').hidden = true;
     ['drawer', 'zoneList'].forEach(id => $(id).removeAttribute('inert'));
-    ['btnPause', 'selSpeed', 'editLand'].forEach(id => { $(id).disabled = false; }); $('modeChip').removeAttribute('aria-disabled');
+    ['btnPause', 'selSpeed', 'editLand'].forEach(id => { $(id).disabled = false; });
     if (restore) {
       A.view.fieldLayer.addTo(A.map); A.view.signature = {}; A.map.setView(edit.center, edit.zoom, { animate: false });
       A.paused = edit.wasPaused; A.lastClock = performance.now(); renderI18n(); render(); window.scrollTo(0, edit.scrollTop); $('editLand').focus({ preventScroll: true });
@@ -3143,34 +2622,23 @@ const SemApp = (() => {
 
   /* ---------------- history & loop ---------------- */
   function initHistory() {
-    const hist = { times: [], moist: {}, zoneFlow: {}, flow: [] };
-    A.farm.zones.forEach(zone => { hist.moist[zone.id] = []; hist.zoneFlow[zone.id] = []; });
-    A.hist = hist;
+    A.hist = { times: [], moist: {}, temperature: {} };
+    A.farm.zones.forEach(zone => { A.hist.moist[zone.id] = []; A.hist.temperature[zone.id] = []; });
   }
-  function pushHistory(msgs) {
-    const sim = A.simApi.sim;
-    const ts = sim.now.getTime();
-    const byNode = {};
-    msgs.forEach(m => { byNode[m.node] = m; });
-    A.hist.times.push(ts);
-    A.hist.flow.push([ts, byNode.ST ? byNode.ST.flowLpm : null]);
-    sim.zones.forEach(zone => {
+  function pushHistory(messages) {
+    const byNode = Object.fromEntries(messages.map(message => [message.node, message]));
+    A.hist.times.push(A.simApi.sim.now.getTime());
+    A.farm.zones.forEach(zone => {
       A.hist.moist[zone.id].push(byNode[zone.id]?.moisture ?? null);
-      A.hist.zoneFlow[zone.id].push(byNode[zone.id]?.flowLpm ?? null);
+      A.hist.temperature[zone.id].push(byNode[zone.id]?.soilTempC ?? null);
     });
-    const cap = 1440;
-    if (A.hist.times.length > cap) {
-      A.hist.times.shift(); A.hist.flow.shift();
-      sim.zones.forEach(zone => { A.hist.moist[zone.id].shift(); A.hist.zoneFlow[zone.id].shift(); });
+    if (A.hist.times.length > 1440) {
+      A.hist.times.shift();
+      A.farm.zones.forEach(zone => { A.hist.moist[zone.id].shift(); A.hist.temperature[zone.id].shift(); });
     }
   }
 
   function processEvents() {
-    const sim = A.simApi.sim;
-    sim.events.slice(-3).forEach(event => {
-      toast(t('cmd.' + event.kind.toLowerCase()), event.zone + ' · ' + event.id, event.kind === 'FAILED' ? 'crit' : '');
-    });
-    sim.events.length = 0;
     A.eng.events.slice(-3).forEach(ev => {
       if (ev.kind === 'raised') toast('⚠ ' + t('toast.newAlert'), t('alert.' + ev.alert.code) +
         (ev.alert.zone ? ' · ' + ev.alert.zone : ''), ev.alert.severity === 'critical' ? 'crit' : 'warn');
@@ -3185,19 +2653,18 @@ const SemApp = (() => {
     const sim = A.simApi.sim;
     $('simClock').textContent = SemI18n.fmtTime(sim.now);
     $('simDate').textContent = SemI18n.fmtDate(sim.now) + ' · ' + (A.paused ? '⏸' : '▶ ' + A.speed + '×');
-    renderModeChip(); updateMap(); renderZones(); renderCommands(); renderAlerts(); renderKPIs(); renderCharts();
+    updateMap(); renderZones(); renderAlerts(); renderKPIs(); renderCharts();
     if (A.drawerTarget) openDrawer(A.drawerTarget);
   }
   function stepOnce(silent = false) {
     const messages = A.simApi.step();
     A.eng.evaluate(A.simApi.sim.now.getTime());
     pushHistory(messages);
-    if (silent) { A.eng.events.length = 0; A.simApi.sim.events.length = 0; }
+    if (silent) A.eng.events.length = 0;
   }
   function tick() {
     const now = performance.now(), elapsed = Math.min(1000, now - A.lastClock);
     A.lastClock = now;
-    A.simApi.processCommands(now);
     if (!A.paused) {
       A.frac += elapsed * A.speed / 60000;
       const steps = Math.min(60, Math.floor(A.frac)); A.frac -= steps;
@@ -3222,7 +2689,7 @@ const SemApp = (() => {
     if (A.landEdit) { toast(t('land.finishFirst'), '', 'warn'); return false; }
     try { return operation(); }
     catch (error) {
-      if (!['invalidCommand', 'invalidFault', 'gatewayUnavailable'].includes(error.message)) throw error;
+      if (error.message !== 'invalidFault') throw error;
       toast(t('settings.invalid'), t('err.' + error.message), 'crit'); return false;
     }
   }
@@ -3230,28 +2697,18 @@ const SemApp = (() => {
   function getState() {
     if (!A.simApi) return { ready: false };
     const sim = A.simApi.sim;
-    return SemConfig.clone({ ready: A.ready, config: A.cfg, simTime: sim.now.getTime(),
-      steps: sim.steps, paused: A.paused, mode: sim.mode, speed: A.speed,
-      zones: sim.zones.map(zone => ({ id: zone.id, areaM2: zone.areaM2, nominalFlowLpm: zone.nominalFlowLpm, moisture: zone.moisture, flowLpm: zone.flowLpm,
-        valve: zone.valveMeasured, commandedValve: zone.valveCmd, rssi: zone.rssi, faults: [...zone.faults] })),
-      station: { flowLpm: sim.station.flowLpm, pumpBar: sim.station.pumpBar, pumpOn: sim.station.pumpOn,
-        gatewayOnline: A.simApi.isGatewayUp(), faults: [...sim.station.faults] },
+    return SemConfig.clone({ ready: A.ready, config: A.cfg, simTime: sim.now.getTime(), steps: sim.steps, paused: A.paused, speed: A.speed,
+      zones: sim.zones.map(zone => ({ id: zone.id, areaM2: zone.areaM2, moisture: zone.moisture, soilTempC: zone.soilTempC, rssi: zone.rssi, faults: [...zone.faults] })),
+      gateway: { online: A.simApi.isGatewayUp(), rssi: sim.gateway.rssi, faults: [...sim.gateway.faults] },
       editingBoundary: A.landEdit ? { points: A.landEdit.points, selected: A.landEdit.selected, textError: A.landEdit.textError } : null,
-      land: { custom: A.farm.custom, boundary: A.farm.boundary, areaM2: A.farm.areaM2, referenceAreaM2: A.farm.referenceAreaM2,
-        station: A.farm.stationLL, gateway: A.farm.gatewayLL, mainPipe: A.farm.mainPipe, pipes: A.farm.laterals,
-        zones: A.farm.zones.map(zone => ({ id: zone.id, row: zone.row, column: zone.column, areaM2: zone.areaM2,
-          polygons: zone.pieces, center: zone.center, sensor: zone.soilLL, valve: zone.valveLL, dripLines: zone.dripLines })) },
+      land: { custom: A.farm.custom, boundary: A.farm.boundary, areaM2: A.farm.areaM2, gateway: A.farm.gatewayLL,
+        zones: A.farm.zones.map(zone => ({ id: zone.id, row: zone.row, column: zone.column, areaM2: zone.areaM2, polygons: zone.pieces, center: zone.center, sensor: zone.soilLL })) },
       telemetry: A.eng.latest, activeAlarms: A.eng.alerts, alarms: A.eng.log, ruleStatistics: A.eng.statistics,
-      baselines: Object.fromEntries(Object.entries(A.eng.baselines).map(([id, baseline]) =>
-        [id, { ready: baseline.ready, moisture: baseline.moisture, flow: baseline.flow }])),
-      commands: sim.commands.map(command => ({ id: command.id, zone: command.zone, topic: command.topic,
-        payload: command.payload, status: command.status, reason: command.reason, ts: command.ts,
-        wallTs: command.wallTs, transitions: command.transitions })),
+      baselines: Object.fromEntries(Object.entries(A.eng.baselines).map(([id, baseline]) => [id, { ready: baseline.ready, moisture: baseline.moisture, temperature: baseline.temperature }])),
       history: { samples: A.hist.times.length, firstTs: A.hist.times[0], lastTs: A.hist.times[A.hist.times.length - 1],
         gaps: Object.fromEntries(A.farm.zones.map(zone => [zone.id, A.hist.moist[zone.id].filter(value => value === null).length])) },
       map: A.map ? { center: A.map.getCenter(), zoom: A.map.getZoom(), zones: A.farm.nZones, offline: A.view.tileOffline } : null,
-      missingTranslations: SemI18n.missingKeys
-    });
+      missingTranslations: SemI18n.missingKeys });
   }
   const actions = {
     getState,
@@ -3278,21 +2735,10 @@ const SemApp = (() => {
       if (draft) { draft.ui.theme = theme; buildSettings(draft); }
       renderI18n(); render(); return true;
     },
-    setMode(mode) {
-      return invoke(() => { A.simApi.setMode(mode); renderModeChip(); render(); return true; });
-    },
-    sendValveCmd(zoneId, desired, duration = A.cfg.commands.defaultMin) {
-      return invoke(() => {
-        const action = typeof desired === 'boolean' ? (desired ? 'OPEN' : 'CLOSE') : String(desired).toUpperCase();
-        const command = A.simApi.sendCommand(zoneId, action, duration);
-        renderModeChip(); render();
-        return { id: command.id, topic: command.topic, payload: { ...command.payload }, status: command.status };
-      });
-    },
-    injectFault(type, target = type === 'gatewayOffline' ? 'ST' : A.selected) {
+    injectFault(type, target = type === 'gatewayOffline' ? 'GW' : A.selected) {
       return invoke(() => { A.simApi.injectFault(type, target); render(); return true; });
     },
-    clearFault(type, target = type === 'all' ? 'all' : type === 'gatewayOffline' ? 'ST' : A.selected) {
+    clearFault(type, target = type === 'all' ? 'all' : type === 'gatewayOffline' ? 'GW' : A.selected) {
       return invoke(() => { A.simApi.clearFault(type, target); render(); return true; });
     },
     repair(target) {
@@ -3318,7 +2764,7 @@ const SemApp = (() => {
         if ($('settingsOverlay').classList.contains('open')) showValidation(errors);
         return false;
       }
-      cfg = SemConfig.clone(cfg); cfg.farm.boundary = SemFarm.cleanBoundary(cfg.farm.boundary);
+      cfg = SemConfig.merge(SemConfig.DEFAULTS, cfg); cfg.farm.boundary = SemFarm.cleanBoundary(cfg.farm.boundary);
       if (cfg.farm.boundary.length) { const info = SemFarm.boundaryInfo(cfg.farm.boundary); [cfg.farm.lat, cfg.farm.lng] = info.origin; }
       if (A.landEdit) finishBoundaryEdit(false);
       const saved = SemConfig.save(cfg);
@@ -3326,7 +2772,7 @@ const SemApp = (() => {
       toast(t(saved ? 'settings.savedToast' : 'settings.storage'), '', saved ? '' : 'warn');
       return saved;
     },
-    // Deterministic fast-forward advances telemetry minutes, never real command deadlines.
+    // Deterministic fast-forward advances the soil monitoring timeline.
     advance(minutes) {
       if (A.landEdit) throw new Error(t('land.finishFirst'));
       if (!Number.isInteger(minutes) || minutes < 1 || minutes > 10080) throw new RangeError('advance: 1..10080 minutes');
@@ -3348,13 +2794,12 @@ const SemApp = (() => {
     A.simApi.subscribe(A.eng.ingest);
     initHistory();
     A.speed = cfg.sim.speed; A.paused = false; A.frac = 0;
-    A.selected = A.farm.zones[0].id; A.drawerTarget = A.selected; A.irrMinutes = cfg.commands.defaultMin;
+    A.selected = A.farm.zones[0].id; A.drawerTarget = A.selected;
     A.chartSignature = ''; A.drawerSignature = ''; $('toasts').replaceChildren();
     if (![...$('selSpeed').options].some(option => Number(option.value) === A.speed)) $('selSpeed').add(new Option(A.speed + '×', String(A.speed)));
     $('selSpeed').value = String(A.speed);
     // Warmup is silent, but its alarm log is NOT erased: false positives remain testable.
     for (let index = 0; index < 1440; index++) stepOnce(true);
-    A.simApi.sim.warmup = false;
     initMap();
     renderI18n();
     render();
@@ -3369,7 +2814,6 @@ const SemApp = (() => {
     $('selSpeed').onchange = e => actions.setSpeed(+e.target.value);
     $('btnLang').onclick = () => actions.setLang(SemI18n.getLang() === 'ar' ? 'en' : 'ar');
     $('btnTheme').onclick = () => actions.setTheme(A.cfg.ui.theme === 'light' ? 'dark' : 'light');
-    $('modeChip').onclick = () => actions.setMode(A.simApi.sim.mode === 'auto' ? 'manual' : 'auto');
     $('btnSettings').onclick = openSettings;
     $('settingsClose').onclick = closeSettings;
     $('fitFarm').onclick = () => {
@@ -3386,13 +2830,7 @@ const SemApp = (() => {
     $('settingsOverlay').onclick = e => { if (e.target === $('settingsOverlay')) closeSettings(); };
     $('btnSave').onclick = () => actions.applyConfig(readSettings());
     $('settingsForm').onsubmit = event => { event.preventDefault(); actions.applyConfig(readSettings()); };
-    $('btnReset').onclick = () => {
-      SemConfig.reset();
-      const cfg = SemConfig.clone(SemConfig.DEFAULTS);
-      boot(cfg); buildSettings();
-      toast(t('settings.resetToast'), '', '');
-      closeSettings();
-    };
+    $('btnReset').onclick = () => { actions.applyConfig(SemConfig.reset()); };
     $('btnExport').onclick = () => {
       const config = readSettings(), errors = SemConfig.validate(config);
       if (errors.length) { showValidation(errors); return; }
@@ -3419,25 +2857,8 @@ const SemApp = (() => {
       $('drawerTitle').textContent = t('drawer.zone'); $('drawerBody').textContent = t('map.sub'); render();
     };
     $('btnRepairAll').onclick = () => actions.repair('all');
-    const selectTab = name => {
-      const alarms = name === 'alarms';
-      $('alarmPanel').hidden = !alarms; $('commandPanel').hidden = alarms;
-      $('tabAlarms').setAttribute('aria-selected', String(alarms)); $('tabCommands').setAttribute('aria-selected', String(!alarms));
-      $('tabAlarms').tabIndex = alarms ? 0 : -1; $('tabCommands').tabIndex = alarms ? -1 : 0;
-    };
-    $('tabAlarms').onclick = () => selectTab('alarms'); $('tabCommands').onclick = () => selectTab('commands');
-    document.querySelector('.feed-tabs').onkeydown = event => {
-      if (['ArrowLeft', 'ArrowRight'].includes(event.key)) {
-        event.preventDefault(); const next = $('alarmPanel').hidden ? 'alarms' : 'commands';
-        selectTab(next); $(next === 'alarms' ? 'tabAlarms' : 'tabCommands').focus();
-      }
-    };
-    selectTab('alarms');
-    const showAlarms = () => { selectTab('alarms'); $('feeds').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+    const showAlarms = () => $('feeds').scrollIntoView({ behavior: 'smooth', block: 'start' });
     $('btnAlerts').onclick = showAlarms; $('banner').onclick = showAlarms;
-    $('modeChip').onkeydown = event => {
-      if (['Enter', ' '].includes(event.key)) { event.preventDefault(); $('modeChip').click(); }
-    };
     document.addEventListener('keydown', event => {
       if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'k') { event.preventDefault(); openSettings(); }
       if (event.key === 'Escape') {
@@ -3475,14 +2896,12 @@ Object.assign(window, { SemConfig, SemI18n, SemFarm, SemSim, SemRules, SemChart,
 
 /* Console examples:
    SemApp.actions.pause(); SemApp.actions.advance(15);
-   SemApp.actions.injectFault('leak', 'Z1'); SemApp.actions.advance(5);
-   SemApp.actions.clearFault('leak', 'Z1'); SemApp.actions.advance(5);
-   SemApp.actions.sendValveCmd('Z1', true, 60);
+   SemApp.actions.injectFault('dry', 'Z1'); SemApp.actions.advance(720);
+   SemApp.actions.clearFault('dry', 'Z1');
+   SemApp.actions.injectFault('wet', 'Z1'); SemApp.actions.advance(90);
    SemApp.actions.setLang('ar'); SemApp.actions.setTheme('dark');
    SemApp.actions.getState(); SemApp.actions.resume();
-   Timing: command ACK/timeout = real seconds; heartbeat timeout = simulated seconds.
-   Thresholds: nominal +20%/-25% comparisons include learned meter uncertainty.
-   Station faults do not stop autonomous local watering, only gateway transport.
+   Measurements and connectivity timeouts use simulated time.
    Runtime logs and baselines are rebuilt on reload; only configuration persists.
 */
 
